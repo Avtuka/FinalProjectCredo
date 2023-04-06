@@ -17,7 +17,7 @@ namespace BankingManagement.Application.Repositories
 
         Task<List<T>> GetAllWithIncludeAsync(Expression<Func<T, bool>> predicate = null, params Expression<Func<T, object>>[] includeProperties);
 
-        Task<T> GetWithIncludeAsync(Expression<Func<T, bool>> predicate = null, params Expression<Func<T, object>>[] includeProperties);
+        Task<T> GetWithIncludeAsync(CancellationToken cancellationToken, Expression<Func<T, bool>> predicate = null, params Expression<Func<T, object>>[] includeProperties);
 
         void Update(T entity);
 

@@ -36,6 +36,7 @@ namespace BankingManagementOnlineBanking.API.Controllers
             return Ok();
         }
 
+        [Route("LogIn")]
         [HttpPost]
         public async Task<ActionResult> LoginOperator(OperatorLoginModel model, CancellationToken cancellationToken)
         {

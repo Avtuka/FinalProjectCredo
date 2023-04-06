@@ -23,7 +23,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankingManagement.Applicati
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Background Tasks", "Background Tasks", "{AC7E7EE0-CDB1-4487-A94A-C11E6EE89E37}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rate.Wroker", "Rate.Wroker\Rate.Wroker.csproj", "{2C13F99E-5CA3-4D5A-BAF9-AFC7D437698E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rate.Wroker", "Rate.Wroker\Rate.Wroker.csproj", "{2C13F99E-5CA3-4D5A-BAF9-AFC7D437698E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankingManagementATM.API", "BankingManagementATM.API\BankingManagementATM.API.csproj", "{2C3CD52E-0F07-482A-87E5-57A30E6DF401}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +57,10 @@ Global
 		{2C13F99E-5CA3-4D5A-BAF9-AFC7D437698E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2C13F99E-5CA3-4D5A-BAF9-AFC7D437698E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2C13F99E-5CA3-4D5A-BAF9-AFC7D437698E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C3CD52E-0F07-482A-87E5-57A30E6DF401}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C3CD52E-0F07-482A-87E5-57A30E6DF401}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C3CD52E-0F07-482A-87E5-57A30E6DF401}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C3CD52E-0F07-482A-87E5-57A30E6DF401}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -70,6 +76,7 @@ Global
 		{8C76027A-BC35-46BA-A63A-36F09433E8CE} = {2BD8E53C-B19F-43F3-985D-47078C7377B4}
 		{AC7E7EE0-CDB1-4487-A94A-C11E6EE89E37} = {B795C56E-8DAA-4FBB-8068-39D5B3B7D48F}
 		{2C13F99E-5CA3-4D5A-BAF9-AFC7D437698E} = {AC7E7EE0-CDB1-4487-A94A-C11E6EE89E37}
+		{2C3CD52E-0F07-482A-87E5-57A30E6DF401} = {63777F5C-DC9B-4B88-B1E8-4FC32A9060D9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3D05CE38-CB7F-4AEF-9700-45A825903EEC}

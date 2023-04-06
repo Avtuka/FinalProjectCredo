@@ -72,6 +72,7 @@ namespace BankingManagementOnlineBanking.API.Controllers
             return Ok("Transaction Succesfull");
         }
 
+        [Route("Transfer")]
         [HttpPut]
         public async Task<ActionResult> TransferToAnotherAccount(TransferModelRequest model, CancellationToken cancellationToken)
         {
