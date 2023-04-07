@@ -15,7 +15,7 @@ namespace BankingManagement.Application.Repositories
 
         Task AddRangeAsync(IEnumerable<T> entities, CancellationToken cancellationToken);
 
-        Task<List<T>> GetAllWithIncludeAsync(Expression<Func<T, bool>> predicate = null, params Expression<Func<T, object>>[] includeProperties);
+        Task<List<T>> GetAllWithIncludeAsync(CancellationToken cancellationToken, Expression<Func<T, bool>> predicate = null, params Expression<Func<T, object>>[] includeProperties);
 
         Task<T> GetWithIncludeAsync(CancellationToken cancellationToken, Expression<Func<T, bool>> predicate = null, params Expression<Func<T, object>>[] includeProperties);
 

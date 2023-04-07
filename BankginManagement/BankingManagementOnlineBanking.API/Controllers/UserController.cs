@@ -30,7 +30,8 @@ namespace BankingManagementOnlineBanking.API.Controllers
             _jwtConfiguration = configuration;
             _accountService = accountService;
             _cardService = cardService;
-            if (contextAccessor.HttpContext!.User != null)
+
+            if (contextAccessor.HttpContext!.User != null && contextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier) != null)
                 userId = int.Parse(contextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
         }
 

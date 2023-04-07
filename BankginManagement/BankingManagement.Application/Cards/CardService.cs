@@ -27,7 +27,7 @@ namespace BankingManagement.Application.Cards
 
         public async Task<List<CardResponseModel>> GetCardsAsymc(int userId, CancellationToken cancellationToken)
         {
-            var cards = await _repo.GetAllWithIncludeAsync(x => x.Accounts.FirstOrDefault().OwnerId == userId, x => x.Accounts);
+            var cards = await _repo.GetAllWithIncludeAsync(cancellationToken, x => x.Accounts.FirstOrDefault().OwnerId == userId, x => x.Accounts);
 
             if (cards == null)
                 throw new Exception("You do not have any cards");

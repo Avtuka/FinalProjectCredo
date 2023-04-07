@@ -57,7 +57,7 @@ namespace BankingManagement.Application.Accounts
 
         public async Task<List<AccountResponseModel>> GetAccounts(int userId, CancellationToken cancellationToken)
         {
-            var accounts = await _repo.GetAllWithIncludeAsync(x => x.OwnerId == userId, x => x.Card);
+            var accounts = await _repo.GetAllWithIncludeAsync(cancellationToken, x => x.OwnerId == userId, x => x.Card);
 
             if (accounts == null)
                 throw new Exception("You do not have any accounts");
@@ -88,21 +88,23 @@ namespace BankingManagement.Application.Accounts
             if (from.OwnerId == to.OwnerId)
                 throw new Exception("You can use this kind of transaction only for transfering between you and other accounts");
 
+
+            from.Amount -= model.Amount;
+
             if (from.Currency != to.Currency)
             {
                 if (from.Currency != Currencies.GEL)
                 {
                     var toGel = await _rateService.GetRateAsync(from.Currency, cancellationToken);
-                    from.Amount *= toGel.RateFormated * toGel.Quantity;
+                    model.Amount = model.Amount * toGel.RateFormated * toGel.Quantity;
                 }
 
                 var rate = await _rateService.GetRateAsync(to.Currency, cancellationToken);
-                from.Amount /= rate.RateFormated * rate.Quantity;
+                model.Amount /= rate.RateFormated * rate.Quantity;
             }
 
             model.Amount -= model.Amount * 0.01 - 0.5;
 
-            from.Amount -= model.Amount;
             to.Amount += model.Amount;
 
             var transaction = new Domain.Transactions.Transaction
@@ -137,20 +139,34 @@ namespace BankingManagement.Application.Accounts
             if (from.OwnerId != to.OwnerId)
                 throw new Exception("You can use this kind of transaction only for transfering between your accounts");
 
+            from.Amount -= model.Amount;
+
             if (from.Currency != to.Currency)
             {
                 if (from.Currency != Currencies.GEL)
                 {
                     var toGel = await _rateService.GetRateAsync(from.Currency, cancellationToken);
-                    from.Amount *= toGel.RateFormated * toGel.Quantity;
+                    model.Amount = model.Amount * toGel.RateFormated * toGel.Quantity;
                 }
 
                 var rate = await _rateService.GetRateAsync(to.Currency, cancellationToken);
-                from.Amount /= rate.RateFormated * rate.Quantity;
+                model.Amount /= rate.RateFormated * rate.Quantity;
             }
 
-            from.Amount -= model.Amount;
+            model.Amount -= model.Amount * 0.01 - 0.5;
+
             to.Amount += model.Amount;
+
+            var transaction = new Domain.Transactions.Transaction
+            {
+                FromIBAN = model.FromIBAN,
+                ToIBAN = model.ToIBAN,
+                SenderId = userId,
+                RecieverId = to.OwnerId,
+                Amount = model.Amount,
+                Currency = to.Currency,
+
+            };
 
             _repo.UpdateRange(new[] { from, to });
             await _repo.SaveChangesAsync(cancellationToken).ConfigureAwait(false);

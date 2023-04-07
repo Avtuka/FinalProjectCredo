@@ -37,7 +37,7 @@ namespace BankingManagement.Infrastucture.Repository
         //    return a;
         //}
 
-        public async Task<List<T>> GetAllWithIncludeAsync(Expression<Func<T, bool>> predicate = null, params Expression<Func<T, object>>[] includeProperties)
+        public async Task<List<T>> GetAllWithIncludeAsync(CancellationToken cancellationToken, Expression<Func<T, bool>> predicate = null, params Expression<Func<T, object>>[] includeProperties)
         {
             IQueryable<T> query = _dbSet;
 
@@ -47,10 +47,10 @@ namespace BankingManagement.Infrastucture.Repository
             foreach (var includeProperty in includeProperties)
                 query = query.Include(includeProperty);
 
-            return await query.ToListAsync();
+            return await query.ToListAsync(cancellationToken);
         }
 
-        public async Task<T> GetWithIncludeAsync(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includeProperties)
+        public async Task<T> GetWithIncludeAsync(CancellationToken cancellationToken, Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includeProperties)
         {
             IQueryable<T>? query = _dbSet;
 

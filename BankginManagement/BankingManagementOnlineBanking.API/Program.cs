@@ -52,6 +52,8 @@ builder.Services.AddSwaggerGen(Configuration =>
 builder.Services.Configure<JWTConfiguration>(builder.Configuration.GetSection(nameof(JWTConfiguration)));
 builder.Services.AddTokenAuthentication(builder.Configuration);
 
+builder.Services.AddHttpContextAccessor();
+
 builder.Services.AddApplicationServices();
 builder.Services.AddPersistenceServices(builder.Configuration.GetConnectionString("DefaultConnection"));
 
