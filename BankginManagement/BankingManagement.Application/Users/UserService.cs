@@ -51,9 +51,11 @@ namespace BankingManagement.Application.Users
             int gelCount = userToRegister.Accounts.Where(x => x.Currency == Currencies.GEL).Count();
             if (gelCount > 1)
                 throw new Exception("Cannot have more than one GEL account while registering user");
+
             int usdCount = userToRegister.Accounts.Where(x => x.Currency == Currencies.USD).Count();
             if (gelCount > 1)
                 throw new Exception("Cannot have more than one USD account while registering user");
+
             int eurCount = userToRegister.Accounts.Where(x => x.Currency == Currencies.EUR).Count();
             if (gelCount > 1)
                 throw new Exception("Cannot have more than one EUR account while registering user");
@@ -100,7 +102,7 @@ namespace BankingManagement.Application.Users
             {
                 CardNumber = CardNumberHelper.GenerateCreditCardNumber(),
                 FullName = name,
-                ExpirationDate = DateTime.Now.AddYears(4),
+                ExpirationDate = DateTime.UtcNow.AddYears(4),
                 PIN = (short)rnd.Next(1000, 9999),
                 CVC = (short)rnd.Next(100, 999)
             };

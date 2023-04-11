@@ -1,11 +1,6 @@
 ﻿using BankingManagement.Domain.Rates;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BankingManagement.Persistence.Configuration
 {
@@ -17,7 +12,6 @@ namespace BankingManagement.Persistence.Configuration
 
             builder.HasIndex(x => x.Code)
                 .IsUnique();
-
         }
     }
 }

@@ -31,6 +31,14 @@ namespace BankingManagement.Persistence.Configuration
 
             builder.Property(x => x.PIN)
                 .IsRequired();
+
+            builder.Property(x => x.CreatedOn)
+                .IsRequired()
+                .HasColumnType("Datetime");
+
+            builder.Property(x => x.UpdatedOn)
+                .IsRequired()
+                .HasColumnType("Datetime");
         }
     }
 }

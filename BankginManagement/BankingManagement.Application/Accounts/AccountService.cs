@@ -5,7 +5,6 @@ using BankingManagement.Application.Repositories;
 using BankingManagement.Application.Transaction;
 using BankingManagement.Domain.Account;
 using BankingManagement.Domain.Enums;
-using BankingManagement.Domain.Transactions;
 using Mapster;
 using System.Data;
 
@@ -18,6 +17,7 @@ namespace BankingManagement.Application.Accounts
         private readonly IRepository<Account> _repo;
         private readonly ITransactionService _transactionService;
         private readonly IRateService _rateService;
+
         public AccountService(IRepository<Account> repo, ITransactionService transactionService, IRateService rateService)
         {
             _repo = repo;
@@ -35,7 +35,6 @@ namespace BankingManagement.Application.Accounts
             if (depositAcc == null)
                 throw new Exception("Account not found");
 
-
             depositAcc.Amount += model.Amount;
             var transaction = new Domain.Transactions.Transaction
             {
@@ -44,11 +43,12 @@ namespace BankingManagement.Application.Accounts
                 RecieverId = userId,
                 Amount = model.Amount,
                 Currency = model.Currency,
-                Date = DateTime.Now,
+                Date = DateTime.UtcNow,
                 Comission = 0,
                 TransactionType = TransactionTypes.Deposit
             };
             await _transactionService.AddTransactionAsync(transaction, cancellationToken);
+
             _repo.Update(depositAcc);
             await _repo.SaveChangesAsync(cancellationToken);
 
@@ -74,7 +74,6 @@ namespace BankingManagement.Application.Accounts
 
         public async Task TransferToOtherAccountAsync(TransferModelRequest model, int userId, CancellationToken cancellationToken)
         {
-
             _repo.BeginTransaction(IsolationLevel.RepeatableRead);
 
             var from = await _repo.GetByPredicateAsync(x => x.IBAN == model.FromIBAN && x.OwnerId == userId, cancellationToken);
@@ -87,7 +86,6 @@ namespace BankingManagement.Application.Accounts
 
             if (from.OwnerId == to.OwnerId)
                 throw new Exception("You can use this kind of transaction only for transfering between you and other accounts");
-
 
             from.Amount -= model.Amount;
 
@@ -103,8 +101,9 @@ namespace BankingManagement.Application.Accounts
                 model.Amount /= rate.RateFormated * rate.Quantity;
             }
 
-            model.Amount -= model.Amount * 0.01 - 0.5;
+            double comission = model.Amount * 0.01 + 0.5;
 
+            model.Amount -= comission;
             to.Amount += model.Amount;
 
             var transaction = new Domain.Transactions.Transaction
@@ -115,8 +114,9 @@ namespace BankingManagement.Application.Accounts
                 RecieverId = to.OwnerId,
                 Amount = model.Amount,
                 Currency = to.Currency,
-
             };
+
+            await _transactionService.AddTransactionAsync(transaction, cancellationToken);
 
             _repo.UpdateRange(new[] { from, to });
             await _repo.SaveChangesAsync(cancellationToken);
@@ -165,8 +165,9 @@ namespace BankingManagement.Application.Accounts
                 RecieverId = to.OwnerId,
                 Amount = model.Amount,
                 Currency = to.Currency,
-
             };
+
+            await _transactionService.AddTransactionAsync(transaction, cancellationToken);
 
             _repo.UpdateRange(new[] { from, to });
             await _repo.SaveChangesAsync(cancellationToken).ConfigureAwait(false);

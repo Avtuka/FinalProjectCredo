@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Transactions;
-
-namespace BankingManagement.Domain.Rates
+﻿namespace BankingManagement.Domain.Rates
 {
     public class Rate
     {

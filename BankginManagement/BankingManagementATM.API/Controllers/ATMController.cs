@@ -1,7 +1,6 @@
 ﻿using BankingManagement.Application.ATM;
 using BankingManagement.Application.ATM.Requests;
 using BankingManagement.Domain.Enums;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BankingManagementATM.API.Controllers
@@ -11,16 +10,18 @@ namespace BankingManagementATM.API.Controllers
     public class ATMController : ControllerBase
     {
         #region Private Members and CTOR
+
         private readonly IATMService _service;
 
         public ATMController(IATMService service)
         {
             _service = service;
         }
-        #endregion
+
+        #endregion Private Members and CTOR
 
         [HttpGet("Balance")]
-        public async Task<ActionResult> GetBalance(AuthenticateCardRequestModel cardModel, CancellationToken cancellationToken)
+        public async Task<ActionResult> GetBalance([FromQuery] AuthenticateCardRequestModel cardModel, CancellationToken cancellationToken)
         {
             var result = await _service.SeeBalanceAsync(cardModel, cancellationToken);
 
@@ -28,7 +29,7 @@ namespace BankingManagementATM.API.Controllers
         }
 
         [HttpPut("Pin")]
-        public async Task<ActionResult> ChangePin(AuthenticateCardRequestModel cardModel, ChangePinRequestModel pinModel, CancellationToken cancellationToken)
+        public async Task<ActionResult> ChangePin([FromQuery] AuthenticateCardRequestModel cardModel, [FromBody] ChangePinRequestModel pinModel, CancellationToken cancellationToken)
         {
             await _service.ChangePin(cardModel, pinModel, cancellationToken);
 
@@ -42,6 +43,5 @@ namespace BankingManagementATM.API.Controllers
 
             return Ok("Withdraw Succesfull");
         }
-
     }
 }

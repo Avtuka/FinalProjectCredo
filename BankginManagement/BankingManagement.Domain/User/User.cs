@@ -1,9 +1,10 @@
-﻿using BankingManagement.Domain.Enums;
+﻿using BankingManagement.Domain.BaseEntity;
+using BankingManagement.Domain.Enums;
 using BankingManagement.Domain.Transactions;
 
 namespace BankingManagement.Domain.User
 {
-    public class User
+    public class User : IBaseEntity
     {
         public int Id { get; set; }
         public string FirstName { get; set; }
@@ -18,5 +19,7 @@ namespace BankingManagement.Domain.User
         public List<Account.Account> Accounts { get; set; }
         public List<Transaction> TransactionsSent { get; set; }
         public List<Transaction> TransactionsRecieved { get; set; }
+        public DateTime CreatedOn { get; set; }
+        public DateTime UpdatedOn { get; set; }
     }
 }

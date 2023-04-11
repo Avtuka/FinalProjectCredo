@@ -36,6 +36,9 @@ namespace BankingManagement.Persistence.Migrations
                     b.Property<int>("CardId")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("Datetime");
+
                     b.Property<int>("Currency")
                         .HasColumnType("int");
 
@@ -47,6 +50,9 @@ namespace BankingManagement.Persistence.Migrations
 
                     b.Property<int>("OwnerId")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("UpdatedOn")
+                        .HasColumnType("Datetime");
 
                     b.HasKey("Id");
 
@@ -76,6 +82,9 @@ namespace BankingManagement.Persistence.Migrations
                         .IsUnicode(false)
                         .HasColumnType("varchar(900)");
 
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("Datetime");
+
                     b.Property<DateTime>("ExpirationDate")
                         .HasColumnType("DateTime");
 
@@ -87,6 +96,9 @@ namespace BankingManagement.Persistence.Migrations
 
                     b.Property<short>("PIN")
                         .HasColumnType("smallint");
+
+                    b.Property<DateTime>("UpdatedOn")
+                        .HasColumnType("Datetime");
 
                     b.HasKey("Id");
 
@@ -103,6 +115,9 @@ namespace BankingManagement.Persistence.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("Datetime");
 
                     b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("DateTime");
@@ -139,6 +154,9 @@ namespace BankingManagement.Persistence.Migrations
 
                     b.Property<int>("Role")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("UpdatedOn")
+                        .HasColumnType("Datetime");
 
                     b.HasKey("Id");
 
@@ -232,6 +250,9 @@ namespace BankingManagement.Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("Datetime");
+
                     b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("DateTime");
 
@@ -270,6 +291,9 @@ namespace BankingManagement.Persistence.Migrations
 
                     b.Property<int>("Role")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("UpdatedOn")
+                        .HasColumnType("Datetime");
 
                     b.HasKey("Id");
 

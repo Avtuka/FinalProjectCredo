@@ -22,7 +22,7 @@ namespace BankingManagementOnlineBanking.API.Infrastructure.Auth.JWT
                     new Claim(ClaimTypes.Role, entity.Role.ToString())
                 }),
 
-                Expires = DateTime.Now.AddMinutes(options.Value.Expires),
+                Expires = DateTime.UtcNow.AddMinutes(options.Value.Expires),
                 Audience = "localhost",
                 Issuer = "localhost",
 

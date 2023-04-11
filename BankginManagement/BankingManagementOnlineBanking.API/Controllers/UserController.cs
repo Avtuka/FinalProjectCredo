@@ -91,6 +91,5 @@ namespace BankingManagementOnlineBanking.API.Controllers
 
             return Ok("Deposit Succesfull");
         }
-
     }
 }

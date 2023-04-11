@@ -38,6 +38,14 @@ namespace BankingManagement.Persistence.Configuration
                 .IsRequired()
                 .IsUnicode(false)
                 .HasMaxLength(512);
+
+            builder.Property(x => x.CreatedOn)
+                .IsRequired()
+                .HasColumnType("Datetime");
+
+            builder.Property(x => x.UpdatedOn)
+                .IsRequired()
+                .HasColumnType("Datetime");
         }
     }
 }

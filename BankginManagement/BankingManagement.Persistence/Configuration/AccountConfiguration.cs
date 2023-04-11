@@ -24,6 +24,14 @@ namespace BankingManagement.Persistence.Configuration
             builder.Property(x => x.Currency)
                 .IsRequired();
 
+            builder.Property(x => x.CreatedOn)
+                .IsRequired()
+                .HasColumnType("Datetime");
+
+            builder.Property(x => x.UpdatedOn)
+                .IsRequired()
+                .HasColumnType("Datetime");
+
             builder.HasOne(x => x.Card).WithMany(x => x.Accounts).HasForeignKey(x => x.CardId);
         }
     }

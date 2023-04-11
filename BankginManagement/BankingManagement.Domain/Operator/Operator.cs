@@ -1,8 +1,9 @@
-﻿using BankingManagement.Domain.Enums;
+﻿using BankingManagement.Domain.BaseEntity;
+using BankingManagement.Domain.Enums;
 
 namespace BankingManagement.Domain.Operator
 {
-    public class Operator
+    public class Operator : IBaseEntity
     {
         public int Id { get; set; }
         public string FirstName { get; set; }
@@ -12,5 +13,7 @@ namespace BankingManagement.Domain.Operator
         public string Email { get; set; }
         public string PasswordHash { get; set; }
         public OperatorRoles Role { get; set; }
+        public DateTime CreatedOn { get; set; }
+        public DateTime UpdatedOn { get; set; }
     }
 }

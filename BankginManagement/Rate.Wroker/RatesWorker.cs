@@ -1,21 +1,13 @@
-﻿using BankingManagement.Domain.Rates;
-using BankingManagement.Persistence.Context;
-using Mapster;
+﻿using BankingManagement.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Security;
-using System.Reflection.Metadata.Ecma335;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Rate.Wroker
 {
     internal class RatesWorker : BackgroundService
     {
         #region Private Members and CTOR
+
         private readonly ILogger<RatesWorker> _logger;
         private readonly IServiceProvider _serviceProvider;
 
@@ -24,7 +16,8 @@ namespace Rate.Wroker
             _logger = logger;
             _serviceProvider = serviceProvider;
         }
-        #endregion
+
+        #endregion Private Members and CTOR
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
@@ -68,10 +61,8 @@ namespace Rate.Wroker
                     var newEur = result.Currencies.Where(x => x.Code == "EUR").SingleOrDefault();
                     var newUsd = result.Currencies.Where(x => x.Code == "USD").SingleOrDefault();
 
-
                     eur.Quantity = newEur.Quantity;
                     eur.RateFormated = newEur.RateFormated;
-
 
                     usd.Quantity = newUsd.Quantity;
                     usd.RateFormated = newUsd.RateFormated;
@@ -84,7 +75,6 @@ namespace Rate.Wroker
                 {
                     _logger.LogError(ex.Message);
                 }
-
 
                 await Task.Delay(TimeSpan.FromDays(1), stoppingToken);
             }

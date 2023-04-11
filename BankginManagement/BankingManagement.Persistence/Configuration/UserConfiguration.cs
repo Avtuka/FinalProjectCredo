@@ -44,6 +44,14 @@ namespace BankingManagement.Persistence.Configuration
                 .IsUnicode(false)
                 .HasMaxLength(512);
 
+            builder.Property(x => x.CreatedOn)
+                .IsRequired()
+                .HasColumnType("Datetime");
+
+            builder.Property(x => x.UpdatedOn)
+                .IsRequired()
+                .HasColumnType("Datetime");
+
             builder.HasMany(x => x.Accounts).WithOne(x => x.Owner).HasForeignKey(x => x.OwnerId);
         }
     }

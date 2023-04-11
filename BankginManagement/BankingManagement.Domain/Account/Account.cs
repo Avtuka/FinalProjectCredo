@@ -1,8 +1,9 @@
-﻿using BankingManagement.Domain.Enums;
+﻿using BankingManagement.Domain.BaseEntity;
+using BankingManagement.Domain.Enums;
 
 namespace BankingManagement.Domain.Account
 {
-    public class Account
+    public class Account : IBaseEntity
     {
         public int Id { get; set; }
         public int OwnerId { get; set; }
@@ -13,5 +14,7 @@ namespace BankingManagement.Domain.Account
 
         public User.User Owner { get; set; }
         public Card.Card Card { get; set; }
+        public DateTime CreatedOn { get; set; }
+        public DateTime UpdatedOn { get; set; }
     }
 }

@@ -12,6 +12,7 @@ namespace BankingManagement.Application.Accounts
         Task TransferToOwnAccountAsync(TransferModelRequest model, int userId, CancellationToken cancellationToken);
 
         Task TransferToOtherAccountAsync(TransferModelRequest model, int userId, CancellationToken cancellationToken);
+
         Task DepositAsync(AccountDepositRequestModel model, int userId, CancellationToken cancellationToken);
     }
 }
