@@ -3,6 +3,7 @@ using BankingManagementATM.API.Infrastucture.Extensions;
 using Microsoft.OpenApi.Models;
 using BankingManagement.Infrastucture.Infrastructure.Extensions;
 using BankingManagementATM.API.Infrastucture.Logger;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -70,3 +71,4 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+Log.CloseAndFlush();

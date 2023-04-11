@@ -3,7 +3,9 @@ using BankingManagement.Infrastucture.Infrastructure.Extensions;
 using BankingManagement.InsideSystem.API.Infrastucture.Auth;
 using BankingManagement.InsideSystem.API.Infrastucture.Extensions;
 using BankingManagement.InsideSystem.API.Infrastucture.Logger;
+using BankingManagement.Persistence.Seed;
 using Microsoft.OpenApi.Models;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -77,4 +79,7 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+DatabaseSeeding.InitializeDatabase(app.Services);
+
 app.Run();
+Log.CloseAndFlush();

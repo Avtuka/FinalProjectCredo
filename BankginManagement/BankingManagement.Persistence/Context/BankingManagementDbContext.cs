@@ -1,4 +1,5 @@
 ﻿using BankingManagement.Domain.BaseEntity;
+using BankingManagement.Domain.Operator;
 using BankingManagement.Domain.Rates;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,6 +12,7 @@ namespace BankingManagement.Persistence.Context
         }
 
         public DbSet<Rate> Rates { get; set; }
+        public DbSet<Operator> Operators { get; set; }
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken)
         {

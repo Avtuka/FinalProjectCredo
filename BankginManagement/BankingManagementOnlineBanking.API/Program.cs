@@ -4,6 +4,7 @@ using BankingManagementOnlineBanking.API.Infrastructure.Auth.JWT;
 using BankingManagementOnlineBanking.API.Infrastructure.Extensions;
 using BankingManagementOnlineBanking.API.Infrastructure.Logger;
 using Microsoft.OpenApi.Models;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -77,3 +78,4 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+Log.CloseAndFlush();
