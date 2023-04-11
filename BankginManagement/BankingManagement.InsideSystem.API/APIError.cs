@@ -1,4 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BankingManagement.Application.Accounts.Exceptions;
+using BankingManagement.Application.ATM.Exceptions;
+using BankingManagement.Application.Cards.Exceptions;
+using BankingManagement.Application.Operator.Exceptions;
+using BankingManagement.Application.Transaction.Exceptions;
+using BankingManagement.Application.Users.Exceptions;
+using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
 namespace BankingManagement.InsideSystem.API
@@ -38,13 +44,126 @@ namespace BankingManagement.InsideSystem.API
             HandleException((dynamic)exception);
         }
 
+        private void HandleException(AccountBalanceException exception)
+        {
+            Code = UnhandlerErrorCode;
+            Status = (int)HttpStatusCode.BadRequest;
+            Type = "https://datatracker.ietf.org/doc/html/rfc7231#section-6.5.1";
+            Title = exception.Message;
+            LogLevel = LogLevel.Error;
+        }
+        private void HandleException(AccountNotFoundException exception)
+        {
+            Code = UnhandlerErrorCode;
+            Status = (int)HttpStatusCode.BadRequest;
+            Type = "https://datatracker.ietf.org/doc/html/rfc7231#section-6.5.1";
+            Title = exception.Message;
+            LogLevel = LogLevel.Error;
+        }
+        private void HandleException(InvalidTransactionException exception)
+        {
+            Code = UnhandlerErrorCode;
+            Status = (int)HttpStatusCode.BadRequest;
+            Type = "https://datatracker.ietf.org/doc/html/rfc7231#section-6.5.1";
+            Title = exception.Message;
+            LogLevel = LogLevel.Error;
+        }
+        private void HandleException(InvalidCurrencyException exception)
+        {
+            Code = UnhandlerErrorCode;
+            Status = (int)HttpStatusCode.BadRequest;
+            Type = "https://datatracker.ietf.org/doc/html/rfc7231#section-6.5.1";
+            Title = exception.Message;
+            LogLevel = LogLevel.Error;
+        }
+        private void HandleException(InvalidPINException exception)
+        {
+            Code = UnhandlerErrorCode;
+            Status = (int)HttpStatusCode.BadRequest;
+            Type = "https://datatracker.ietf.org/doc/html/rfc7231#section-6.5.1";
+            Title = exception.Message;
+            LogLevel = LogLevel.Error;
+        }
+        private void HandleException(InvalidWithdrawAmountException exception)
+        {
+            Code = UnhandlerErrorCode;
+            Status = (int)HttpStatusCode.BadRequest;
+            Type = "https://datatracker.ietf.org/doc/html/rfc7231#section-6.5.1";
+            Title = exception.Message;
+            LogLevel = LogLevel.Error;
+        }
+        private void HandleException(WithdrawLimitException exception)
+        {
+            Code = UnhandlerErrorCode;
+            Status = (int)HttpStatusCode.BadRequest;
+            Type = "https://datatracker.ietf.org/doc/html/rfc7231#section-6.5.1";
+            Title = exception.Message;
+            LogLevel = LogLevel.Error;
+        }
+        private void HandleException(NoCardsException exception)
+        {
+            Code = UnhandlerErrorCode;
+            Status = (int)HttpStatusCode.BadRequest;
+            Type = "https://datatracker.ietf.org/doc/html/rfc7231#section-6.5.1";
+            Title = exception.Message;
+            LogLevel = LogLevel.Error;
+        }
+        private void HandleException(InvalidCredentialsException exception)
+        {
+            Code = UnhandlerErrorCode;
+            Status = (int)HttpStatusCode.BadRequest;
+            Type = "https://datatracker.ietf.org/doc/html/rfc7231#section-6.5.1";
+            Title = exception.Message;
+            LogLevel = LogLevel.Error;
+        }
+        private void HandleException(DuplicateEmailException exception)
+        {
+            Code = UnhandlerErrorCode;
+            Status = (int)HttpStatusCode.BadRequest;
+            Type = "https://datatracker.ietf.org/doc/html/rfc7231#section-6.5.1";
+            Title = exception.Message;
+            LogLevel = LogLevel.Error;
+        }
+        private void HandleException(EmptyTransactionException exception)
+        {
+            Code = UnhandlerErrorCode;
+            Status = (int)HttpStatusCode.BadRequest;
+            Type = "https://datatracker.ietf.org/doc/html/rfc7231#section-6.5.1";
+            Title = exception.Message;
+            LogLevel = LogLevel.Error;
+        }
+        private void HandleException(EmailAlreadyConfirmedException exception)
+        {
+            Code = UnhandlerErrorCode;
+            Status = (int)HttpStatusCode.BadRequest;
+            Type = "https://datatracker.ietf.org/doc/html/rfc7231#section-6.5.1";
+            Title = exception.Message;
+            LogLevel = LogLevel.Error;
+        }
+        private void HandleException(EmailNotConfirmedException exception)
+        {
+            Code = UnhandlerErrorCode;
+            Status = (int)HttpStatusCode.BadRequest;
+            Type = "https://datatracker.ietf.org/doc/html/rfc7231#section-6.5.1";
+            Title = exception.Message;
+            LogLevel = LogLevel.Error;
+        }
+        private void HandleException(MoreThanOneAccountException exception)
+        {
+            Code = UnhandlerErrorCode;
+            Status = (int)HttpStatusCode.BadRequest;
+            Type = "https://datatracker.ietf.org/doc/html/rfc7231#section-6.5.1";
+            Title = exception.Message;
+            LogLevel = LogLevel.Error;
+        }
+
         private void HandleException(Exception exception)
         {
             Code = UnhandlerErrorCode;
             Status = (int)HttpStatusCode.InternalServerError;
             Type = "https://datatracker.ietf.org/doc/html/rfc7231#section-6.6.1";
             Title = exception.Message;
-            LogLevel = LogLevel.Error;
+            LogLevel = LogLevel.Critical;
         }
     }
 }

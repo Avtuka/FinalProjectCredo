@@ -2,10 +2,11 @@ using BankingManagement.Application.Infrastructure.Extensions;
 using BankingManagementATM.API.Infrastucture.Extensions;
 using Microsoft.OpenApi.Models;
 using BankingManagement.Infrastucture.Infrastructure.Extensions;
+using BankingManagementATM.API.Infrastucture.Logger;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+builder.ConfigureSeriLog();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -53,6 +54,7 @@ builder.Services.AddApplicationServices();
 builder.Services.AddPersistenceServices(builder.Configuration.GetConnectionString("DefaultConnection"));
 
 var app = builder.Build();
+app.UseCustomMiddlewares();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

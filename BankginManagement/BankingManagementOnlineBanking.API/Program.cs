@@ -2,11 +2,12 @@ using BankingManagement.Application.Infrastructure.Extensions;
 using BankingManagement.Infrastucture.Infrastructure.Extensions;
 using BankingManagementOnlineBanking.API.Infrastructure.Auth.JWT;
 using BankingManagementOnlineBanking.API.Infrastructure.Extensions;
+using BankingManagementOnlineBanking.API.Infrastructure.Logger;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+builder.ConfigureSeriLog();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

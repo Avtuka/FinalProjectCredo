@@ -2,10 +2,12 @@ using BankingManagement.Application.Infrastructure.Extensions;
 using BankingManagement.Infrastucture.Infrastructure.Extensions;
 using BankingManagement.InsideSystem.API.Infrastucture.Auth;
 using BankingManagement.InsideSystem.API.Infrastucture.Extensions;
+using BankingManagement.InsideSystem.API.Infrastucture.Logger;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.ConfigureSeriLog();
 // Add services to the container.
 
 builder.Services.AddControllers();
