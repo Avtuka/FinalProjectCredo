@@ -1,13 +1,20 @@
 ﻿using BankingManagement.Application.Accounts;
 using BankingManagement.Application.Cards;
 using BankingManagement.Application.Infrastructure.Helpers;
+using BankingManagement.Application.Infrastructure.Resources;
+using BankingManagement.Application.Operator.Exceptions;
 using BankingManagement.Application.Repositories;
+using BankingManagement.Application.Users.Exceptions;
 using BankingManagement.Application.Users.Requests;
 using BankingManagement.Domain.Card;
 using BankingManagement.Domain.Enums;
 using BankingManagement.Domain.User;
 using IbanNet.Registry;
 using Mapster;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 namespace BankingManagement.Application.Users
 {
@@ -33,14 +40,50 @@ namespace BankingManagement.Application.Users
             var passwordHash = MyPasswordHelper.GenerateSHA512Hash(model.Password);
             var user = await _repo.GetByPredicateAsync(x => x.Email == model.Email && x.PasswordHash == passwordHash, cancellationToken);
             if (user == null)
-                throw new Exception("Email or password is invalid");
+                throw new InvalidCredentialsException(ExceptionTexts.InvalidCredentials);
             if (!user.EmailConfirmed)
-                throw new Exception("Email is not confirmed");
+                throw new EmailNotConfirmedException(ExceptionTexts.EmailNotConfirmed);
 
             return user;
         }
 
-        public async Task RegisterAsync(UserRegisterRequestModel model, CancellationToken cancellationToken)
+        public async Task ConfirmEmailAsync(string code, string secret, CancellationToken cancellationToken)
+        {
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes(secret);
+
+            var validationParameters = new TokenValidationParameters
+            {
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = new SymmetricSecurityKey(key),
+                ValidateIssuer = true,
+                ValidIssuer = "EmailConfirmation",
+                ValidateAudience = true,
+                ValidAudience = "User",
+                ValidateLifetime = true,
+                ClockSkew = TimeSpan.FromMinutes(10)
+            };
+
+            SecurityToken validatedToken;
+            var claimsPrincipal = tokenHandler.ValidateToken(code, validationParameters, out validatedToken);
+
+            var email = claimsPrincipal.FindFirst(ClaimTypes.Email)?.Value;
+
+            if (email == null)
+                throw new Exception("Something went wrong try again");
+
+            var user = await _repo.GetByPredicateAsync(x => x.Email == email, cancellationToken);
+
+            if (user.EmailConfirmed)
+                throw new EmailAlreadyConfirmedException(ExceptionTexts.EmailAlreadyConfirmed);
+
+            user.EmailConfirmed = true;
+
+            _repo.Update(user);
+            await _repo.SaveChangesAsync(cancellationToken);
+        }
+
+        public async Task RegisterAsync(UserRegisterRequestModel model, string secret, CancellationToken cancellationToken)
         {
             var userToRegister = model.Adapt<User>();
 
@@ -50,15 +93,15 @@ namespace BankingManagement.Application.Users
 
             int gelCount = userToRegister.Accounts.Where(x => x.Currency == Currencies.GEL).Count();
             if (gelCount > 1)
-                throw new Exception("Cannot have more than one GEL account while registering user");
+                throw new MoreThanOneAccountException(ExceptionTexts.DuplicateGELAccount);
 
             int usdCount = userToRegister.Accounts.Where(x => x.Currency == Currencies.USD).Count();
             if (gelCount > 1)
-                throw new Exception("Cannot have more than one USD account while registering user");
+                throw new MoreThanOneAccountException(ExceptionTexts.DuplicateUSDAccount);
 
             int eurCount = userToRegister.Accounts.Where(x => x.Currency == Currencies.EUR).Count();
             if (gelCount > 1)
-                throw new Exception("Cannot have more than one EUR account while registering user");
+                throw new MoreThanOneAccountException(ExceptionTexts.DuplicateEURAccount);
 
             //Card Generation
             Card card;
@@ -92,6 +135,7 @@ namespace BankingManagement.Application.Users
             //Send Emails
             EmailHelper.SendEmail(model.Email, "Password", EmailHelper.GeneratePasswordEmailForUser(model.FirstName, password));
             EmailHelper.SendEmail(userToRegister.Email, "Card Information", EmailHelper.GenerateCardEmail(userToRegister.FirstName, card.CardNumber.Substring(12, 4), card.PIN)); ;
+            EmailHelper.SendEmail(userToRegister.Email, "Email Confirmation", EmailHelper.CreateUrl(userToRegister.Email, secret));
         }
 
         private Card GenerateNewCard(string name)

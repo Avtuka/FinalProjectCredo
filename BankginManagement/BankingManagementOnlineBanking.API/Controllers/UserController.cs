@@ -87,5 +87,15 @@ namespace BankingManagementOnlineBanking.API.Controllers
 
             return Ok(ResponseTexts.Deposit);
         }
+
+        [Route("ConfirmEmail")]
+        [AllowAnonymous]
+        [HttpGet]
+        public async Task<ActionResult> ConfirmEmail(string code, CancellationToken cancellationToken = default)
+        {
+            await _userService.ConfirmEmailAsync(code, _jwtConfiguration.Value.Secret, cancellationToken);
+
+            return Ok("Email Confirmed");
+        }
     }
 }

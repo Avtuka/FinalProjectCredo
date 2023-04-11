@@ -1,4 +1,6 @@
-﻿using BankingManagement.Application.Cards.Responses;
+﻿using BankingManagement.Application.Cards.Exceptions;
+using BankingManagement.Application.Cards.Responses;
+using BankingManagement.Application.Infrastructure.Resources;
 using BankingManagement.Application.Repositories;
 using BankingManagement.Domain.Card;
 using Mapster;
@@ -30,7 +32,7 @@ namespace BankingManagement.Application.Cards
             var cards = await _repo.GetAllWithIncludeAsync(cancellationToken, x => x.Accounts.FirstOrDefault().OwnerId == userId, x => x.Accounts);
 
             if (cards == null)
-                throw new Exception("You do not have any cards");
+                throw new NoCardsException(ExceptionTexts.NoCards);
 
             return cards.Adapt<List<CardResponseModel>>();
         }

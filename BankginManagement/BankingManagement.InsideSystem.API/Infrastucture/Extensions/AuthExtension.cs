@@ -20,7 +20,7 @@ namespace BankingManagement.InsideSystem.API.Infrastucture.Extensions
                     IssuerSigningKey = new SymmetricSecurityKey(key),
                     ValidateIssuer = true,
                     ValidateAudience = true,
-                    ValidIssuer = "Employee",
+                    ValidIssuer = "localhost",
                     ValidAudience = "Employee"
                 });
             return services;

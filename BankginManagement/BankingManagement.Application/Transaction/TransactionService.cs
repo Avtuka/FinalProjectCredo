@@ -1,4 +1,6 @@
-﻿using BankingManagement.Application.Repositories;
+﻿using BankingManagement.Application.Infrastructure.Resources;
+using BankingManagement.Application.Repositories;
+using BankingManagement.Application.Transaction.Exceptions;
 
 namespace BankingManagement.Application.Transaction
 {
@@ -17,7 +19,7 @@ namespace BankingManagement.Application.Transaction
 
         public async Task AddTransactionAsync(Domain.Transactions.Transaction transaction, CancellationToken cancellationToken)
         {
-            if (transaction == null) throw new Exception("Transaction cannot be empty");
+            if (transaction == null) throw new EmptyTransactionException(ExceptionTexts.TransactionNull);
 
             await _repo.AddAsync(transaction, cancellationToken).ConfigureAwait(false);
             await _repo.SaveChangesAsync(cancellationToken);

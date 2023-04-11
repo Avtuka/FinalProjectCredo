@@ -61,6 +61,24 @@ namespace BankingManagement.Application.Infrastructure.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Insufficient balance.
+        /// </summary>
+        internal static string AccountBalance {
+            get {
+                return ResourceManager.GetString("AccountBalance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Account not found.
+        /// </summary>
+        internal static string AccountNotFound {
+            get {
+                return ResourceManager.GetString("AccountNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Credit card number is required.
         /// </summary>
         internal static string CreditCardNumberRequired {
@@ -97,11 +115,65 @@ namespace BankingManagement.Application.Infrastructure.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Email address already exists.
+        /// </summary>
+        internal static string DuplicateEmail {
+            get {
+                return ResourceManager.GetString("DuplicateEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot have more than one EUR account while registering user.
+        /// </summary>
+        internal static string DuplicateEURAccount {
+            get {
+                return ResourceManager.GetString("DuplicateEURAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot have more than one GEL account while registering user.
+        /// </summary>
+        internal static string DuplicateGELAccount {
+            get {
+                return ResourceManager.GetString("DuplicateGELAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot have more than one USD account while registering user.
+        /// </summary>
+        internal static string DuplicateUSDAccount {
+            get {
+                return ResourceManager.GetString("DuplicateUSDAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email is already confirmed.
+        /// </summary>
+        internal static string EmailAlreadyConfirmed {
+            get {
+                return ResourceManager.GetString("EmailAlreadyConfirmed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Email is not in a correct format.
         /// </summary>
         internal static string EmailFormat {
             get {
                 return ResourceManager.GetString("EmailFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email is not confirmed.
+        /// </summary>
+        internal static string EmailNotConfirmed {
+            get {
+                return ResourceManager.GetString("EmailNotConfirmed", resourceCulture);
             }
         }
         
@@ -142,11 +214,65 @@ namespace BankingManagement.Application.Infrastructure.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You can only withdraw amount which is divisible by 5.
+        /// </summary>
+        internal static string InvalidAmountToWithdraw {
+            get {
+                return ResourceManager.GetString("InvalidAmountToWithdraw", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email or password is inccorect.
+        /// </summary>
+        internal static string InvalidCredentials {
+            get {
+                return ResourceManager.GetString("InvalidCredentials", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid credit card number.
         /// </summary>
         internal static string InvalidCreditCardNumber {
             get {
                 return ResourceManager.GetString("InvalidCreditCardNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid currency.
+        /// </summary>
+        internal static string InvalidCurrency {
+            get {
+                return ResourceManager.GetString("InvalidCurrency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid PIN.
+        /// </summary>
+        internal static string InvalidPin {
+            get {
+                return ResourceManager.GetString("InvalidPin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can use this kind of transaction only for transfering between you and other accounts.
+        /// </summary>
+        internal static string InvalidTransactionToAnotherAccount {
+            get {
+                return ResourceManager.GetString("InvalidTransactionToAnotherAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can use this kind of transaction only for transfering between your accounts.
+        /// </summary>
+        internal static string InvalidTransactionToOwnAccount {
+            get {
+                return ResourceManager.GetString("InvalidTransactionToOwnAccount", resourceCulture);
             }
         }
         
@@ -165,6 +291,15 @@ namespace BankingManagement.Application.Infrastructure.Resources {
         internal static string LastNameRequired {
             get {
                 return ResourceManager.GetString("LastNameRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You do not have any cards.
+        /// </summary>
+        internal static string NoCards {
+            get {
+                return ResourceManager.GetString("NoCards", resourceCulture);
             }
         }
         
@@ -214,11 +349,29 @@ namespace BankingManagement.Application.Infrastructure.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Transaction cannot be empty.
+        /// </summary>
+        internal static string TransactionNull {
+            get {
+                return ResourceManager.GetString("TransactionNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Transfer amount must be greater than 0.
         /// </summary>
         internal static string TransferAmount {
             get {
                 return ResourceManager.GetString("TransferAmount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot withdraw more than 10000 in one day.
+        /// </summary>
+        internal static string WithdrawLimit {
+            get {
+                return ResourceManager.GetString("WithdrawLimit", resourceCulture);
             }
         }
     }

@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AccountBalance" xml:space="preserve">
+    <value>Insufficient balance</value>
+  </data>
+  <data name="AccountNotFound" xml:space="preserve">
+    <value>Account not found</value>
+  </data>
   <data name="CreditCardNumberRequired" xml:space="preserve">
     <value>Credit card number is required</value>
   </data>
@@ -129,8 +135,26 @@
   <data name="DepositAmount" xml:space="preserve">
     <value>Deposit amount must be greater than 0</value>
   </data>
+  <data name="DuplicateEmail" xml:space="preserve">
+    <value>Email address already exists</value>
+  </data>
+  <data name="DuplicateEURAccount" xml:space="preserve">
+    <value>Cannot have more than one EUR account while registering user</value>
+  </data>
+  <data name="DuplicateGELAccount" xml:space="preserve">
+    <value>Cannot have more than one GEL account while registering user</value>
+  </data>
+  <data name="DuplicateUSDAccount" xml:space="preserve">
+    <value>Cannot have more than one USD account while registering user</value>
+  </data>
+  <data name="EmailAlreadyConfirmed" xml:space="preserve">
+    <value>Email is already confirmed</value>
+  </data>
   <data name="EmailFormat" xml:space="preserve">
     <value>Email is not in a correct format</value>
+  </data>
+  <data name="EmailNotConfirmed" xml:space="preserve">
+    <value>Email is not confirmed</value>
   </data>
   <data name="EmailRequired" xml:space="preserve">
     <value>Email is required</value>
@@ -144,14 +168,35 @@
   <data name="IBANNotEmpty" xml:space="preserve">
     <value>IBAN is required</value>
   </data>
+  <data name="InvalidAmountToWithdraw" xml:space="preserve">
+    <value>You can only withdraw amount which is divisible by 5</value>
+  </data>
+  <data name="InvalidCredentials" xml:space="preserve">
+    <value>Email or password is inccorect</value>
+  </data>
   <data name="InvalidCreditCardNumber" xml:space="preserve">
     <value>Invalid credit card number</value>
+  </data>
+  <data name="InvalidCurrency" xml:space="preserve">
+    <value>Invalid currency</value>
+  </data>
+  <data name="InvalidPin" xml:space="preserve">
+    <value>Invalid PIN</value>
+  </data>
+  <data name="InvalidTransactionToAnotherAccount" xml:space="preserve">
+    <value>You can use this kind of transaction only for transfering between you and other accounts</value>
+  </data>
+  <data name="InvalidTransactionToOwnAccount" xml:space="preserve">
+    <value>You can use this kind of transaction only for transfering between your accounts</value>
   </data>
   <data name="LastNameLength" xml:space="preserve">
     <value>Lastname length must not be more than 50 characters</value>
   </data>
   <data name="LastNameRequired" xml:space="preserve">
     <value>Lastname is required</value>
+  </data>
+  <data name="NoCards" xml:space="preserve">
+    <value>You do not have any cards</value>
   </data>
   <data name="PINRequired" xml:space="preserve">
     <value>PIN is required</value>
@@ -168,7 +213,13 @@
   <data name="PrivateNumberRequired" xml:space="preserve">
     <value>Private number is required</value>
   </data>
+  <data name="TransactionNull" xml:space="preserve">
+    <value>Transaction cannot be empty</value>
+  </data>
   <data name="TransferAmount" xml:space="preserve">
     <value>Transfer amount must be greater than 0</value>
+  </data>
+  <data name="WithdrawLimit" xml:space="preserve">
+    <value>Cannot withdraw more than 10000 in one day</value>
   </data>
 </root>

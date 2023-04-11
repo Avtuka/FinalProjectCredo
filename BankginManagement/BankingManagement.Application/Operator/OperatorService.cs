@@ -1,8 +1,11 @@
 ﻿using BankingManagement.Application.Infrastructure.Helpers;
+using BankingManagement.Application.Infrastructure.Resources;
+using BankingManagement.Application.Operator.Exceptions;
 using BankingManagement.Application.Operator.Requests;
 using BankingManagement.Application.Repositories;
 using BankingManagement.Domain.Enums;
 using Mapster;
+using System.Security.Authentication;
 
 namespace BankingManagement.Application.Operator
 {
@@ -24,7 +27,7 @@ namespace BankingManagement.Application.Operator
             var oper = await _repo.GetByPredicateAsync(x => x.Email == @operator.Email && x.PasswordHash == MyPasswordHelper.GenerateSHA512Hash(@operator.Password), cancellationToken);
 
             if (oper == null)
-                throw new Exception("Email or Password is incorrect");
+                throw new InvalidCredentialsException(ExceptionTexts.InvalidCredentials);
 
             return oper;
         }
@@ -32,7 +35,7 @@ namespace BankingManagement.Application.Operator
         public async Task RegisterAsync(OperatorRegisterRequestModel model, CancellationToken cancellationToken)
         {
             if (await _repo.GetByPredicateAsync(x => x.Email == model.Email, cancellationToken) != null)
-                throw new Exception("Operator with this email address already exists");
+                throw new DuplicateEmailException(ExceptionTexts.DuplicateEmail);
 
             if (Enum.GetName(typeof(OperatorRoles), model.Role) == null)
                 throw new Exception("Incorrect role");

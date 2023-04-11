@@ -1,5 +1,4 @@
 using BankingManagement.Application.Infrastructure.Extensions;
-using BankingManagementATM.API.Infrastucture.Auth.JWT;
 using BankingManagementATM.API.Infrastucture.Extensions;
 using Microsoft.OpenApi.Models;
 using BankingManagement.Infrastucture.Infrastructure.Extensions;
@@ -49,8 +48,6 @@ builder.Services.AddSwaggerGen(Configuration =>
     });
 });
 
-builder.Services.Configure<JWTConfiguration>(builder.Configuration.GetSection(nameof(JWTConfiguration)));
-builder.Services.AddTokenAuthentication(builder.Configuration);
 
 builder.Services.AddApplicationServices();
 builder.Services.AddPersistenceServices(builder.Configuration.GetConnectionString("DefaultConnection"));
@@ -66,7 +63,6 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

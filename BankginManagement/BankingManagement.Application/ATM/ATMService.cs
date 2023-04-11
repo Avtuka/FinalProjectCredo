@@ -1,4 +1,7 @@
-﻿using BankingManagement.Application.ATM.Requests;
+﻿using BankingManagement.Application.Accounts.Exceptions;
+using BankingManagement.Application.ATM.Exceptions;
+using BankingManagement.Application.ATM.Requests;
+using BankingManagement.Application.Infrastructure.Resources;
 using BankingManagement.Application.Rates;
 using BankingManagement.Application.Repositories;
 using BankingManagement.Application.Transaction;
@@ -29,7 +32,7 @@ namespace BankingManagement.Application.ATM
             var card = await _cardRepo.GetWithIncludeAsync(cancellationToken, x => x.CardNumber == authenticateModel.CardNumber && x.PIN == authenticateModel.PIN, x => x.Accounts);
 
             if (card == null)
-                throw new Exception("Invalid PIN");
+                throw new InvalidPINException(ExceptionTexts.InvalidPin);
 
             var balance = new List<KeyValuePair<string, double>>();
             foreach (var acc in card.Accounts)
@@ -45,7 +48,7 @@ namespace BankingManagement.Application.ATM
             var card = await _cardRepo.GetWithIncludeAsync(cancellationToken, x => x.CardNumber == authenticateModel.CardNumber && x.PIN == authenticateModel.PIN, x => x.Accounts);
 
             if (card is null)
-                throw new Exception("Invalid Pin");
+                throw new InvalidPINException(ExceptionTexts.InvalidPin);
 
             card.PIN = pinModel.NewPassword;
 
@@ -58,22 +61,22 @@ namespace BankingManagement.Application.ATM
             _cardRepo.BeginTransaction(System.Data.IsolationLevel.RepeatableRead);
 
             if (amount % 5 != 0)
-                throw new Exception("You can only withdraw amount which is divisible by 5");
+                throw new InvalidWithdrawAmountException(ExceptionTexts.InvalidAmountToWithdraw);
 
             var card = await _cardRepo.GetWithIncludeAsync(cancellationToken, x => x.CardNumber == authenticateModel.CardNumber && x.PIN == authenticateModel.PIN, x => x.Accounts);
 
             if (card is null)
-                throw new Exception("Invalid Pin");
+                throw new InvalidPINException(ExceptionTexts.InvalidPin);
 
             if (!card.Accounts.Any(x => x.Currency == currency))
-                throw new Exception("Invalid currency");
+                throw new InvalidCurrencyException(ExceptionTexts.InvalidCurrency);
 
             var acc = card.Accounts.Where(x => x.Currency == currency).SingleOrDefault();
 
             double comission = amount * 2 / 100;
 
             if (acc.Amount < amount + comission)
-                throw new Exception("Not enough balance");
+                throw new AccountBalanceException(ExceptionTexts.AccountBalance);
 
             var transactions = await _transacionService.GetOneDayTransactionsAsync(acc.IBAN, cancellationToken);
 
@@ -116,7 +119,7 @@ namespace BankingManagement.Application.ATM
             }
 
             if (alreadyWithdrawAmount + amountInGel > 10000)
-                throw new Exception("Cannot withdraw more than 10000 in one day");
+                throw new WithdrawLimitException(ExceptionTexts.WithdrawLimit);
 
             var transaction = new Domain.Transactions.Transaction
             {

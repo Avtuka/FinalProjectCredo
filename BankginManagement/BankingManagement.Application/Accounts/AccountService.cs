@@ -1,8 +1,11 @@
-﻿using BankingManagement.Application.Accounts.Requests;
+﻿using BankingManagement.Application.Accounts.Exceptions;
+using BankingManagement.Application.Accounts.Requests;
 using BankingManagement.Application.Accounts.Responses;
+using BankingManagement.Application.Infrastructure.Resources;
 using BankingManagement.Application.Rates;
 using BankingManagement.Application.Repositories;
 using BankingManagement.Application.Transaction;
+using BankingManagement.Application.Transaction.Exceptions;
 using BankingManagement.Domain.Account;
 using BankingManagement.Domain.Enums;
 using Mapster;
@@ -33,7 +36,7 @@ namespace BankingManagement.Application.Accounts
 
             var depositAcc = await _repo.GetByPredicateAsync(x => x.IBAN == model.IBAN, cancellationToken);
             if (depositAcc == null)
-                throw new Exception("Account not found");
+                throw new AccountNotFoundException(ExceptionTexts.AccountNotFound);
 
             depositAcc.Amount += model.Amount;
             var transaction = new Domain.Transactions.Transaction
@@ -59,8 +62,8 @@ namespace BankingManagement.Application.Accounts
         {
             var accounts = await _repo.GetAllWithIncludeAsync(cancellationToken, x => x.OwnerId == userId, x => x.Card);
 
-            if (accounts == null)
-                throw new Exception("You do not have any accounts");
+            if (accounts.Count() == 0)
+                throw new AccountNotFoundException(ExceptionTexts.AccountNotFound);
 
             return accounts.Adapt<List<AccountResponseModel>>();
         }
@@ -78,14 +81,14 @@ namespace BankingManagement.Application.Accounts
 
             var from = await _repo.GetByPredicateAsync(x => x.IBAN == model.FromIBAN && x.OwnerId == userId, cancellationToken);
             if (from.Amount < model.Amount)
-                throw new Exception("You do not have enough money to transfer");
+                throw new AccountBalanceException(ExceptionTexts.AccountBalance);
 
             var to = await _repo.GetByPredicateAsync(x => x.IBAN == model.ToIBAN, cancellationToken);
             if (to == null)
-                throw new Exception("This account does not exists");
+                throw new AccountNotFoundException(ExceptionTexts.AccountNotFound);
 
             if (from.OwnerId == to.OwnerId)
-                throw new Exception("You can use this kind of transaction only for transfering between you and other accounts");
+                throw new InvalidTransactionException(ExceptionTexts.InvalidTransactionToAnotherAccount);
 
             from.Amount -= model.Amount;
 
@@ -130,14 +133,14 @@ namespace BankingManagement.Application.Accounts
 
             var from = await _repo.GetByPredicateAsync(x => x.IBAN == model.FromIBAN && x.OwnerId == userId, cancellationToken).ConfigureAwait(false);
             if (from.Amount < model.Amount)
-                throw new Exception("You do not have enough money to transfer");
+                throw new AccountBalanceException(ExceptionTexts.AccountBalance);
 
             var to = await _repo.GetByPredicateAsync(x => x.IBAN == model.ToIBAN && x.OwnerId == userId, cancellationToken).ConfigureAwait(false);
             if (to == null)
-                throw new Exception("This account does not exists");
+                throw new AccountNotFoundException(ExceptionTexts.AccountNotFound);
 
             if (from.OwnerId != to.OwnerId)
-                throw new Exception("You can use this kind of transaction only for transfering between your accounts");
+                throw new InvalidTransactionException(ExceptionTexts.InvalidTransactionToOwnAccount);
 
             from.Amount -= model.Amount;
 

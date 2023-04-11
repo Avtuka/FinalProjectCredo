@@ -10,6 +10,8 @@ namespace BankingManagement.Persistence.Configuration
         {
             builder.HasKey(x => x.Id);
 
+            builder.HasIndex(x => x.PrivateNumber).IsUnique();
+
             builder.Property(x => x.FirstName)
                  .IsRequired()
                  .HasMaxLength(40)

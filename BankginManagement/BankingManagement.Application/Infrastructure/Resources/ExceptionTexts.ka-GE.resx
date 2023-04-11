@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AccountBalance" xml:space="preserve">
+    <value>არაშესაფერისი ბალანსი</value>
+  </data>
+  <data name="AccountNotFound" xml:space="preserve">
+    <value>ანგარიში ვერ მოიძებნა</value>
+  </data>
   <data name="CreditCardNumberRequired" xml:space="preserve">
     <value>ბარათის ნომერი აუცილებელია</value>
   </data>
@@ -129,8 +135,26 @@
   <data name="DepositAmount" xml:space="preserve">
     <value>დეპოზიტის თანხა უნდა იყოს 0-ზე მეტი</value>
   </data>
+  <data name="DuplicateEmail" xml:space="preserve">
+    <value>მეილი უკვე არსებობს</value>
+  </data>
+  <data name="DuplicateEURAccount" xml:space="preserve">
+    <value>ერთ ბარათზე დაუშვებელია ერთზე მეტი ევროს ანგარიშის ქონა</value>
+  </data>
+  <data name="DuplicateGELAccount" xml:space="preserve">
+    <value>ერთ ბარათზე დაუშვებელია ერთზე მეტი ლარის ანგარიშის ქონა</value>
+  </data>
+  <data name="DuplicateUSDAccount" xml:space="preserve">
+    <value>ერთ ბარათზე დაუშვებელია ერთზე მეტი დოლარისანგარიშის ქონა</value>
+  </data>
+  <data name="EmailAlreadyConfirmed" xml:space="preserve">
+    <value>მეილი უკვე დადასტურებულია</value>
+  </data>
   <data name="EmailFormat" xml:space="preserve">
     <value>მეილის ფორმატი არასწორია</value>
+  </data>
+  <data name="EmailNotConfirmed" xml:space="preserve">
+    <value>მეილი არ არის დადასტურებული</value>
   </data>
   <data name="EmailRequired" xml:space="preserve">
     <value>მეილი აუცილებელია</value>
@@ -144,14 +168,35 @@
   <data name="IBANNotEmpty" xml:space="preserve">
     <value>IBAN აუცილებელია</value>
   </data>
+  <data name="InvalidAmountToWithdraw" xml:space="preserve">
+    <value>არასწორი გასატანი თანხა</value>
+  </data>
+  <data name="InvalidCredentials" xml:space="preserve">
+    <value>მეილი ან პაროლი არასწორია</value>
+  </data>
   <data name="InvalidCreditCardNumber" xml:space="preserve">
     <value>არასწორი ბარათის ნომერი</value>
+  </data>
+  <data name="InvalidCurrency" xml:space="preserve">
+    <value>არასწორი ვალუტა</value>
+  </data>
+  <data name="InvalidPin" xml:space="preserve">
+    <value>არასწორი პინი</value>
+  </data>
+  <data name="InvalidTransactionToAnotherAccount" xml:space="preserve">
+    <value>არასწორი ტრანზაქცია</value>
+  </data>
+  <data name="InvalidTransactionToOwnAccount" xml:space="preserve">
+    <value>არასწორი ტრანზაქცია</value>
   </data>
   <data name="LastNameLength" xml:space="preserve">
     <value>გვარი უნდა შედგებოდეს მაქსიმუმ 40 სიმბოლოსგან</value>
   </data>
   <data name="LastNameRequired" xml:space="preserve">
     <value>გვარი აუცილებელია</value>
+  </data>
+  <data name="NoCards" xml:space="preserve">
+    <value>თქვენ არ გაქვთ ბარათები</value>
   </data>
   <data name="PINRequired" xml:space="preserve">
     <value>პინი აუცილებელია</value>
@@ -168,7 +213,13 @@
   <data name="PrivateNumberRequired" xml:space="preserve">
     <value>პირადი ნომერი არასწორია</value>
   </data>
+  <data name="TransactionNull" xml:space="preserve">
+    <value>ტრანზაქცია არ შეიძლება იყოს ცარიელი</value>
+  </data>
   <data name="TransferAmount" xml:space="preserve">
     <value>გადასარიცხი თანხა უნდა იყოს 0ზე მეტი</value>
+  </data>
+  <data name="WithdrawLimit" xml:space="preserve">
+    <value>დღიური გატანის ლიმიტი ამოიწურა. 10000</value>
   </data>
 </root>

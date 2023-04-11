@@ -1,10 +1,11 @@
 ﻿using BankingManagement.Application.Reports;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BankingManagement.InsideSystem.API.Controllers
 {
     [Route("api/[controller]")]
-    //[Authorize(Roles = "CreditOfficer, Administrator")]
+    [Authorize(Roles = "CreditOfficer, Administrator")]
     [ApiController]
     public class ReportsController : ControllerBase
     {

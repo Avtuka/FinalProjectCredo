@@ -11,7 +11,7 @@ using BankingManagement.InsideSystem.API.Infrastucture.Resources;
 namespace BankingManagement.InsideSystem.API.Controllers
 {
     [Route("api/[controller]")]
-    [Authorize(Roles = "Operator, CreditOfficer, Administrator")]
+    //[Authorize(Roles = "Operator, CreditOfficer, Administrator")]
     [ApiController]
     public class OperatorController : ControllerBase
     {
@@ -34,7 +34,7 @@ namespace BankingManagement.InsideSystem.API.Controllers
         [HttpPost]
         public async Task<ActionResult> RegisterUser(UserRegisterRequestModel model, CancellationToken cancellationToken)
         {
-            await _userService.RegisterAsync(model, cancellationToken);
+            await _userService.RegisterAsync(model, _jwtOptions.Value.Secret, cancellationToken);
 
             return Ok(ResposneTexts.RegisterUser);
         }
