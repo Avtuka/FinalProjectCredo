@@ -1,6 +1,7 @@
 ﻿using BankingManagement.Application.ATM;
 using BankingManagement.Application.ATM.Requests;
 using BankingManagement.Domain.Enums;
+using BankingManagementATM.API.Infrastucture.Resources;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BankingManagementATM.API.Controllers
@@ -33,7 +34,7 @@ namespace BankingManagementATM.API.Controllers
         {
             await _service.ChangePin(cardModel, pinModel, cancellationToken);
 
-            return Ok("Pin was changed");
+            return Ok(ResponseTexts.PINChange);
         }
 
         [HttpPut]
@@ -41,7 +42,7 @@ namespace BankingManagementATM.API.Controllers
         {
             await _service.WithdrawAsync(cardModel, currency, amount, cancellationToken);
 
-            return Ok("Withdraw Succesfull");
+            return Ok(ResponseTexts.Withdraw);
         }
     }
 }

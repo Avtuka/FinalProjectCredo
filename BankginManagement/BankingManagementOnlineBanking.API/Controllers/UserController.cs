@@ -4,6 +4,7 @@ using BankingManagement.Application.Cards;
 using BankingManagement.Application.Users;
 using BankingManagement.Application.Users.Requests;
 using BankingManagementOnlineBanking.API.Infrastructure.Auth.JWT;
+using BankingManagementOnlineBanking.API.Infrastructure.Resources;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
@@ -49,7 +50,6 @@ namespace BankingManagementOnlineBanking.API.Controllers
         [HttpGet("MyAccounts")]
         public async Task<ActionResult> GetAccounts(CancellationToken cancellationToken)
         {
-            //int userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
             var accounts = await _accountService.GetAccounts(userId, cancellationToken);
 
             return Ok(accounts);
@@ -58,7 +58,6 @@ namespace BankingManagementOnlineBanking.API.Controllers
         [HttpGet("MyCards")]
         public async Task<ActionResult> GetCards(CancellationToken cancellationToken)
         {
-            //int userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
             var cards = await _cardService.GetCardsAsymc(userId, cancellationToken);
 
             return Ok(cards);
@@ -67,29 +66,26 @@ namespace BankingManagementOnlineBanking.API.Controllers
         [HttpPut("TransferToMyAccount")]
         public async Task<ActionResult> TransferToOwnAccount(TransferModelRequest model, CancellationToken cancellationToken)
         {
-            //int userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
             await _accountService.TransferToOwnAccountAsync(model, userId, cancellationToken);
 
-            return Ok("Transaction Succesfull");
+            return Ok(ResponseTexts.Transaction);
         }
 
         [Route("Transfer")]
         [HttpPut]
         public async Task<ActionResult> TransferToAnotherAccount(TransferModelRequest model, CancellationToken cancellationToken)
         {
-            //int userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
             await _accountService.TransferToOtherAccountAsync(model, userId, cancellationToken);
 
-            return Ok("Transaction Succesfull");
+            return Ok(ResponseTexts.Transaction);
         }
 
         [HttpPut]
         public async Task<ActionResult> Deposit(AccountDepositRequestModel model, CancellationToken cancellationToken)
         {
-            //int userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
             await _accountService.DepositAsync(model, userId, cancellationToken);
 
-            return Ok("Deposit Succesfull");
+            return Ok(ResponseTexts.Deposit);
         }
     }
 }

@@ -6,11 +6,12 @@ using BankingManagement.InsideSystem.API.Infrastucture.Auth;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+using BankingManagement.InsideSystem.API.Infrastucture.Resources;
 
 namespace BankingManagement.InsideSystem.API.Controllers
 {
     [Route("api/[controller]")]
-    //[Authorize(Roles = "Operator, CreditOfficer, Administrator")]
+    [Authorize(Roles = "Operator, CreditOfficer, Administrator")]
     [ApiController]
     public class OperatorController : ControllerBase
     {
@@ -35,7 +36,7 @@ namespace BankingManagement.InsideSystem.API.Controllers
         {
             await _userService.RegisterAsync(model, cancellationToken);
 
-            return Ok();
+            return Ok(ResposneTexts.RegisterUser);
         }
 
         [Route("LogIn")]
@@ -54,7 +55,7 @@ namespace BankingManagement.InsideSystem.API.Controllers
         {
             await _operatorService.RegisterAsync(model, cancellationToken);
 
-            return Ok();
+            return Ok(ResposneTexts.RegisterOperator);
         }
     }
 }

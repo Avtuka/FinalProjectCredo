@@ -18,4 +18,19 @@
     <ProjectReference Include="..\BankingManagement.Infrastucture\BankingManagement.Infrastucture.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Infrastucture\Resources\ResposneTexts.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ResposneTexts.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Infrastucture\Resources\ResposneTexts.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResposneTexts.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
 </Project>
