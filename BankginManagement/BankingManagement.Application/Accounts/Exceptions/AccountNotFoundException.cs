@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BankingManagement.Application.Accounts.Exceptions
+﻿namespace BankingManagement.Application.Accounts.Exceptions
 {
     public class AccountNotFoundException : Exception
     {
@@ -12,7 +6,6 @@ namespace BankingManagement.Application.Accounts.Exceptions
 
         public AccountNotFoundException(string text) : base(text)
         {
-
         }
     }
 }

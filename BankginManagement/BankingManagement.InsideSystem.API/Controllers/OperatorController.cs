@@ -3,10 +3,10 @@ using BankingManagement.Application.Operator.Requests;
 using BankingManagement.Application.Users;
 using BankingManagement.Application.Users.Requests;
 using BankingManagement.InsideSystem.API.Infrastucture.Auth;
+using BankingManagement.InsideSystem.API.Infrastucture.Resources;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
-using BankingManagement.InsideSystem.API.Infrastucture.Resources;
 
 namespace BankingManagement.InsideSystem.API.Controllers
 {

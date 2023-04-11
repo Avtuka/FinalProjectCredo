@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BankingManagement.Application.Cards.Exceptions
+﻿namespace BankingManagement.Application.Cards.Exceptions
 {
     public class NoCardsException : Exception
     {
@@ -12,7 +6,6 @@ namespace BankingManagement.Application.Cards.Exceptions
 
         public NoCardsException(string text) : base(text)
         {
-
         }
     }
 }

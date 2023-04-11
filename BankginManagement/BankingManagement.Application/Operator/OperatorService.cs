@@ -5,7 +5,6 @@ using BankingManagement.Application.Operator.Requests;
 using BankingManagement.Application.Repositories;
 using BankingManagement.Domain.Enums;
 using Mapster;
-using System.Security.Authentication;
 
 namespace BankingManagement.Application.Operator
 {

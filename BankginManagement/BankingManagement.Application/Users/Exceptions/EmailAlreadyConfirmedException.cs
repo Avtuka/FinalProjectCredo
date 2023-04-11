@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BankingManagement.Application.Users.Exceptions
+﻿namespace BankingManagement.Application.Users.Exceptions
 {
     public class EmailAlreadyConfirmedException : Exception
     {
@@ -12,7 +6,6 @@ namespace BankingManagement.Application.Users.Exceptions
 
         public EmailAlreadyConfirmedException(string text) : base(text)
         {
-
         }
     }
 }

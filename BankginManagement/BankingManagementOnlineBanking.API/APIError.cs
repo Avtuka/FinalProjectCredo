@@ -52,6 +52,7 @@ namespace BankingManagementOnlineBanking.API
             Title = exception.Message;
             LogLevel = LogLevel.Error;
         }
+
         private void HandleException(AccountNotFoundException exception)
         {
             Code = UnhandlerErrorCode;
@@ -60,6 +61,7 @@ namespace BankingManagementOnlineBanking.API
             Title = exception.Message;
             LogLevel = LogLevel.Error;
         }
+
         private void HandleException(InvalidTransactionException exception)
         {
             Code = UnhandlerErrorCode;
@@ -68,6 +70,7 @@ namespace BankingManagementOnlineBanking.API
             Title = exception.Message;
             LogLevel = LogLevel.Error;
         }
+
         private void HandleException(InvalidCurrencyException exception)
         {
             Code = UnhandlerErrorCode;
@@ -76,6 +79,7 @@ namespace BankingManagementOnlineBanking.API
             Title = exception.Message;
             LogLevel = LogLevel.Error;
         }
+
         private void HandleException(InvalidPINException exception)
         {
             Code = UnhandlerErrorCode;
@@ -84,6 +88,7 @@ namespace BankingManagementOnlineBanking.API
             Title = exception.Message;
             LogLevel = LogLevel.Error;
         }
+
         private void HandleException(InvalidWithdrawAmountException exception)
         {
             Code = UnhandlerErrorCode;
@@ -92,6 +97,7 @@ namespace BankingManagementOnlineBanking.API
             Title = exception.Message;
             LogLevel = LogLevel.Error;
         }
+
         private void HandleException(WithdrawLimitException exception)
         {
             Code = UnhandlerErrorCode;
@@ -100,6 +106,7 @@ namespace BankingManagementOnlineBanking.API
             Title = exception.Message;
             LogLevel = LogLevel.Error;
         }
+
         private void HandleException(NoCardsException exception)
         {
             Code = UnhandlerErrorCode;
@@ -108,6 +115,7 @@ namespace BankingManagementOnlineBanking.API
             Title = exception.Message;
             LogLevel = LogLevel.Error;
         }
+
         private void HandleException(InvalidCredentialsException exception)
         {
             Code = UnhandlerErrorCode;
@@ -116,6 +124,7 @@ namespace BankingManagementOnlineBanking.API
             Title = exception.Message;
             LogLevel = LogLevel.Error;
         }
+
         private void HandleException(DuplicateEmailException exception)
         {
             Code = UnhandlerErrorCode;
@@ -124,6 +133,7 @@ namespace BankingManagementOnlineBanking.API
             Title = exception.Message;
             LogLevel = LogLevel.Error;
         }
+
         private void HandleException(EmptyTransactionException exception)
         {
             Code = UnhandlerErrorCode;
@@ -132,6 +142,7 @@ namespace BankingManagementOnlineBanking.API
             Title = exception.Message;
             LogLevel = LogLevel.Error;
         }
+
         private void HandleException(EmailAlreadyConfirmedException exception)
         {
             Code = UnhandlerErrorCode;
@@ -140,6 +151,7 @@ namespace BankingManagementOnlineBanking.API
             Title = exception.Message;
             LogLevel = LogLevel.Error;
         }
+
         private void HandleException(EmailNotConfirmedException exception)
         {
             Code = UnhandlerErrorCode;
@@ -148,6 +160,7 @@ namespace BankingManagementOnlineBanking.API
             Title = exception.Message;
             LogLevel = LogLevel.Error;
         }
+
         private void HandleException(MoreThanOneAccountException exception)
         {
             Code = UnhandlerErrorCode;

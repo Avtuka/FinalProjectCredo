@@ -1,8 +1,8 @@
 using BankingManagement.Application.Infrastructure.Extensions;
-using BankingManagementATM.API.Infrastucture.Extensions;
-using Microsoft.OpenApi.Models;
 using BankingManagement.Infrastucture.Infrastructure.Extensions;
+using BankingManagementATM.API.Infrastucture.Extensions;
 using BankingManagementATM.API.Infrastucture.Logger;
+using Microsoft.OpenApi.Models;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -49,7 +49,6 @@ builder.Services.AddSwaggerGen(Configuration =>
         }
     });
 });
-
 
 builder.Services.AddApplicationServices();
 builder.Services.AddPersistenceServices(builder.Configuration.GetConnectionString("DefaultConnection"));
