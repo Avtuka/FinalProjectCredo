@@ -15,7 +15,7 @@ builder.Services.AddSwaggerGen(Configuration =>
 {
     Configuration.SwaggerDoc("v1", new OpenApiInfo
     {
-        Title = "Banking Management.API",
+        Title = "Banking Management Online Banking.API",
         Version = "v1",
         Contact = new OpenApiContact
         {

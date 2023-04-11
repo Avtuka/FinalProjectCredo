@@ -6,6 +6,8 @@ using BankingManagement.Application.Rates;
 using BankingManagement.Application.Reports;
 using BankingManagement.Application.Transaction;
 using BankingManagement.Application.Users;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace BankingManagement.Application.Infrastructure.Extensions
@@ -22,6 +24,9 @@ namespace BankingManagement.Application.Infrastructure.Extensions
             services.AddScoped<IRateService, RateService>();
             services.AddScoped<IATMService, ATMService>();
             services.AddScoped<IReportService, ReportService>();
+
+            services.AddFluentValidationAutoValidation().AddFluentValidationClientsideAdapters();
+            services.AddValidatorsFromAssembly(typeof(ServiceExtensions).Assembly);
 
             return services;
         }
