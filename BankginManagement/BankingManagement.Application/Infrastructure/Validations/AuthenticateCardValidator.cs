@@ -1,4 +1,5 @@
 ﻿using BankingManagement.Application.ATM.Requests;
+using BankingManagement.Application.Infrastructure.Resources;
 using FluentValidation;
 using System;
 using System.Collections.Generic;
@@ -13,11 +14,11 @@ namespace BankingManagement.Application.Infrastructure.Validations
         public AuthenticateCardValidator()
         {
             RuleFor(x => x.CardNumber)
-                .NotEmpty().WithMessage("Credit card number is required")
-                .CreditCard().WithMessage("Invalid credit card number");
+                .NotEmpty().WithMessage(ExceptionTexts.CreditCardNumberRequired)
+                .CreditCard().WithMessage(ExceptionTexts.InvalidCreditCardNumber);
 
             RuleFor(x => x.PIN)
-                .NotEmpty().WithMessage("Pin is required");
+                .NotEmpty().WithMessage(ExceptionTexts.PINRequired);
         }
     }
 }

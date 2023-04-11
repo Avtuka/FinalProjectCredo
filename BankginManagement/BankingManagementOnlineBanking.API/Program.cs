@@ -59,6 +59,8 @@ builder.Services.AddPersistenceServices(builder.Configuration.GetConnectionStrin
 
 var app = builder.Build();
 
+app.UseCustomMiddlewares();
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

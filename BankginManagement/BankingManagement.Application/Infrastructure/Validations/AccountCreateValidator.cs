@@ -1,4 +1,5 @@
 ﻿using BankingManagement.Application.Accounts.Requests;
+using BankingManagement.Application.Infrastructure.Resources;
 using FluentValidation;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ namespace BankingManagement.Application.Infrastructure.Validations
         {
             RuleFor(x => x.Amount)
                 .NotEmpty()
-                .GreaterThanOrEqualTo(0).WithMessage("Deposit money must be greater than zero");
+                .GreaterThanOrEqualTo(0).WithMessage(ExceptionTexts.DepositAmount);
 
         }
     }

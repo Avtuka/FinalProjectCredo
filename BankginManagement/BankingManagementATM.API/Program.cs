@@ -1,8 +1,8 @@
 using BankingManagement.Application.Infrastructure.Extensions;
-using BankingManagement.Infrastucture.Infrastructure.Extensions;
-using BankingManagementOnlineBanking.API.Infrastructure.Auth.JWT;
-using BankingManagementOnlineBanking.API.Infrastructure.Extensions;
+using BankingManagementATM.API.Infrastucture.Auth.JWT;
+using BankingManagementATM.API.Infrastucture.Extensions;
 using Microsoft.OpenApi.Models;
+using BankingManagement.Infrastucture.Infrastructure.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 

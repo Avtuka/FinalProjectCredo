@@ -1,4 +1,5 @@
 ﻿using BankingManagement.Application.Accounts.Requests;
+using BankingManagement.Application.Infrastructure.Resources;
 using FluentValidation;
 using System;
 using System.Collections.Generic;
@@ -13,14 +14,14 @@ namespace BankingManagement.Application.Infrastructure.Validations
         public TransferModelValidator()
         {
             RuleFor(x => x.FromIBAN)
-                .NotEmpty().WithMessage("IBAN must not be empty");
+                .NotEmpty().WithMessage(ExceptionTexts.IBANNotEmpty);
 
             RuleFor(x => x.ToIBAN)
-                .NotEmpty().WithMessage("IBAN must not be empty");
+                .NotEmpty().WithMessage(ExceptionTexts.IBANNotEmpty);
 
             RuleFor(x => x.Amount)
                 .NotEmpty()
-                .GreaterThan(0).WithMessage("Transfer money must be greater than 0");
+                .GreaterThan(0).WithMessage(ExceptionTexts.TransferAmount);
         }
     }
 }

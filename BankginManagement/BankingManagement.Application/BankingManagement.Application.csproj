@@ -18,4 +18,19 @@
 		<ProjectReference Include="..\BankingManagement.Domain\BankingManagement.Domain.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Compile Update="Infrastructure\Resources\ExceptionTexts.Designer.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>ExceptionTexts.resx</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Update="Infrastructure\Resources\ExceptionTexts.resx">
+	    <Generator>ResXFileCodeGenerator</Generator>
+	    <LastGenOutput>ExceptionTexts.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
+	</ItemGroup>
+
 </Project>

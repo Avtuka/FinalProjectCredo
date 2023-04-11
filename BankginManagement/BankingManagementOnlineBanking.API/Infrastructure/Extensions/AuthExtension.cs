@@ -20,7 +20,7 @@ namespace BankingManagementOnlineBanking.API.Infrastructure.Extensions
                     IssuerSigningKey = new SymmetricSecurityKey(key),
                     ValidateIssuer = true,
                     ValidateAudience = true,
-                    ValidIssuer = "localhost",
+                    ValidIssuer = "OnlineBanking",
                     ValidAudience = "localhost"
                 });
             return services;

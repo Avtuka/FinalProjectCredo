@@ -1,4 +1,5 @@
-﻿using BankingManagement.Application.Users.Requests;
+﻿using BankingManagement.Application.Infrastructure.Resources;
+using BankingManagement.Application.Users.Requests;
 using FluentValidation;
 using System;
 using System.Collections.Generic;
@@ -13,25 +14,25 @@ namespace BankingManagement.Application.Infrastructure.Validations
         public UserRegisterValidator()
         {
             RuleFor(x => x.FirstName)
-               .NotEmpty().WithMessage("Firstname is required")
-               .MaximumLength(40).WithMessage("Firstname length must not be more than 40 characters");
+               .NotEmpty().WithMessage(ExceptionTexts.FirstNameRequired)
+               .MaximumLength(40).WithMessage(ExceptionTexts.FirstNameLength);
 
             RuleFor(x => x.LastName)
-              .NotEmpty().WithMessage("Lastname is required")
-              .MaximumLength(50).WithMessage("Lastname length must not be more than 50 characters");
+              .NotEmpty().WithMessage(ExceptionTexts.LastNameRequired)
+              .MaximumLength(50).WithMessage(ExceptionTexts.LastNameLength);
 
             RuleFor(x => x.Email)
-                .NotEmpty().WithMessage("Email is required")
-                .EmailAddress().WithMessage("Email must be in correct format");
+                .NotEmpty().WithMessage(ExceptionTexts.EmailRequired)
+                .EmailAddress().WithMessage(ExceptionTexts.EmailFormat);
 
             RuleFor(x => x.PrivateNumber)
-                .NotEmpty().WithMessage("Private number is required")
-                .Length(11).WithMessage("Private number must contain exavtly 11 numbers")
-                .Matches("^([0-9]{11})$").WithMessage("Private number can only contain digits");
+                .NotEmpty().WithMessage(ExceptionTexts.PrivateNumberRequired)
+                .Length(11).WithMessage(ExceptionTexts.PrivateNumberLength)
+                .Matches("^([0-9]{11})$").WithMessage(ExceptionTexts.PrivateNumberFormat);
 
             RuleFor(x => x.DateOfBirth)
-                .NotEmpty().WithMessage("Date of birth is required")
-                .GreaterThanOrEqualTo(DateTime.UtcNow.AddYears(-18)).WithMessage("Operator must be more than 18 years");
+                .NotEmpty().WithMessage(ExceptionTexts.DateOfBirthRequired)
+                .GreaterThanOrEqualTo(DateTime.UtcNow.AddYears(-18)).WithMessage(ExceptionTexts.DateOfBirthAge);
         }
     }
 }

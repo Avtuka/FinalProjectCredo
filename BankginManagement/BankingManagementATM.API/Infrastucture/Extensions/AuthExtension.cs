@@ -2,7 +2,7 @@
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
-namespace BankingManagement.InsideSystem.API.Infrastucture.Extensions
+namespace BankingManagementATM.API.Infrastucture.Extensions
 {
     public static class AuthExtension
     {
@@ -20,8 +20,8 @@ namespace BankingManagement.InsideSystem.API.Infrastucture.Extensions
                     IssuerSigningKey = new SymmetricSecurityKey(key),
                     ValidateIssuer = true,
                     ValidateAudience = true,
-                    ValidIssuer = "Employee",
-                    ValidAudience = "Employee"
+                    ValidIssuer = "ATM",
+                    ValidAudience = "localhost"
                 });
             return services;
         }

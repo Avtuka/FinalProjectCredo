@@ -4,9 +4,9 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace BankingManagementOnlineBanking.API.Infrastructure.Auth.JWT
+namespace BankingManagementATM.API.Infrastucture.Auth.JWT
 {
-    public static class JWTHelper
+    public class JWTHelper
     {
         public static string GenerateToken(dynamic entity, IOptions<JWTConfiguration> options)
         {
@@ -23,7 +23,7 @@ namespace BankingManagementOnlineBanking.API.Infrastructure.Auth.JWT
                 }),
 
                 Expires = DateTime.UtcNow.AddMinutes(options.Value.Expires),
-                Audience = "OnlineBanking",
+                Audience = "ATM",
                 Issuer = "localhost",
 
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha512),

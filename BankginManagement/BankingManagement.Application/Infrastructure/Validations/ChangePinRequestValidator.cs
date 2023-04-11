@@ -1,4 +1,5 @@
 ﻿using BankingManagement.Application.ATM.Requests;
+using BankingManagement.Application.Infrastructure.Resources;
 using FluentValidation;
 using System;
 using System.Collections.Generic;
@@ -13,13 +14,13 @@ namespace BankingManagement.Application.Infrastructure.Validations
         public ChangePinRequestValidator()
         {
             RuleFor(x => x.CurrentPassword)
-                .NotEmpty().WithMessage("PIN is required");
+                .NotEmpty().WithMessage(ExceptionTexts.PINRequired);
 
             RuleFor(x => x.NewPassword)
-                .NotEmpty().WithMessage("PIN is required");
+                .NotEmpty().WithMessage(ExceptionTexts.PINRequired);
 
             RuleFor(x => x.ConfirmPassword)
-                .Equal(x => x.NewPassword).WithMessage("PINs do not match");
+                .Equal(x => x.NewPassword).WithMessage(ExceptionTexts.PINsDoNotMatch);
         }
     }
 }
