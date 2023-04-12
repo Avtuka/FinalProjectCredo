@@ -46,7 +46,7 @@ namespace BankingManagementOnlineBanking.API
 
         private void HandleException(AccountBalanceException exception)
         {
-            Code = UnhandlerErrorCode;
+            Code = exception.Code;
             Status = (int)HttpStatusCode.BadRequest;
             Type = "https://datatracker.ietf.org/doc/html/rfc7231#section-6.5.1";
             Title = exception.Message;
@@ -55,7 +55,7 @@ namespace BankingManagementOnlineBanking.API
 
         private void HandleException(AccountNotFoundException exception)
         {
-            Code = UnhandlerErrorCode;
+            Code = exception.Code;
             Status = (int)HttpStatusCode.BadRequest;
             Type = "https://datatracker.ietf.org/doc/html/rfc7231#section-6.5.1";
             Title = exception.Message;
@@ -64,7 +64,7 @@ namespace BankingManagementOnlineBanking.API
 
         private void HandleException(InvalidTransactionException exception)
         {
-            Code = UnhandlerErrorCode;
+            Code = exception.Code;
             Status = (int)HttpStatusCode.BadRequest;
             Type = "https://datatracker.ietf.org/doc/html/rfc7231#section-6.5.1";
             Title = exception.Message;
@@ -73,7 +73,7 @@ namespace BankingManagementOnlineBanking.API
 
         private void HandleException(InvalidCurrencyException exception)
         {
-            Code = UnhandlerErrorCode;
+            Code = exception.Code;
             Status = (int)HttpStatusCode.BadRequest;
             Type = "https://datatracker.ietf.org/doc/html/rfc7231#section-6.5.1";
             Title = exception.Message;
@@ -82,7 +82,7 @@ namespace BankingManagementOnlineBanking.API
 
         private void HandleException(InvalidPINException exception)
         {
-            Code = UnhandlerErrorCode;
+            Code = exception.Code;
             Status = (int)HttpStatusCode.BadRequest;
             Type = "https://datatracker.ietf.org/doc/html/rfc7231#section-6.5.1";
             Title = exception.Message;
@@ -91,7 +91,7 @@ namespace BankingManagementOnlineBanking.API
 
         private void HandleException(InvalidWithdrawAmountException exception)
         {
-            Code = UnhandlerErrorCode;
+            Code = exception.Code;
             Status = (int)HttpStatusCode.BadRequest;
             Type = "https://datatracker.ietf.org/doc/html/rfc7231#section-6.5.1";
             Title = exception.Message;
@@ -100,7 +100,7 @@ namespace BankingManagementOnlineBanking.API
 
         private void HandleException(WithdrawLimitException exception)
         {
-            Code = UnhandlerErrorCode;
+            Code = exception.Code;
             Status = (int)HttpStatusCode.BadRequest;
             Type = "https://datatracker.ietf.org/doc/html/rfc7231#section-6.5.1";
             Title = exception.Message;
@@ -109,7 +109,7 @@ namespace BankingManagementOnlineBanking.API
 
         private void HandleException(NoCardsException exception)
         {
-            Code = UnhandlerErrorCode;
+            Code = exception.Code;
             Status = (int)HttpStatusCode.BadRequest;
             Type = "https://datatracker.ietf.org/doc/html/rfc7231#section-6.5.1";
             Title = exception.Message;
@@ -118,7 +118,7 @@ namespace BankingManagementOnlineBanking.API
 
         private void HandleException(InvalidCredentialsException exception)
         {
-            Code = UnhandlerErrorCode;
+            Code = exception.Code;
             Status = (int)HttpStatusCode.BadRequest;
             Type = "https://datatracker.ietf.org/doc/html/rfc7231#section-6.5.1";
             Title = exception.Message;
@@ -127,7 +127,7 @@ namespace BankingManagementOnlineBanking.API
 
         private void HandleException(DuplicateEmailException exception)
         {
-            Code = UnhandlerErrorCode;
+            Code = exception.Code;
             Status = (int)HttpStatusCode.BadRequest;
             Type = "https://datatracker.ietf.org/doc/html/rfc7231#section-6.5.1";
             Title = exception.Message;
@@ -136,7 +136,7 @@ namespace BankingManagementOnlineBanking.API
 
         private void HandleException(EmptyTransactionException exception)
         {
-            Code = UnhandlerErrorCode;
+            Code = exception.Code;
             Status = (int)HttpStatusCode.BadRequest;
             Type = "https://datatracker.ietf.org/doc/html/rfc7231#section-6.5.1";
             Title = exception.Message;
@@ -145,7 +145,7 @@ namespace BankingManagementOnlineBanking.API
 
         private void HandleException(EmailAlreadyConfirmedException exception)
         {
-            Code = UnhandlerErrorCode;
+            Code = exception.Code;
             Status = (int)HttpStatusCode.BadRequest;
             Type = "https://datatracker.ietf.org/doc/html/rfc7231#section-6.5.1";
             Title = exception.Message;
@@ -154,7 +154,7 @@ namespace BankingManagementOnlineBanking.API
 
         private void HandleException(EmailNotConfirmedException exception)
         {
-            Code = UnhandlerErrorCode;
+            Code = exception.Code;
             Status = (int)HttpStatusCode.BadRequest;
             Type = "https://datatracker.ietf.org/doc/html/rfc7231#section-6.5.1";
             Title = exception.Message;
@@ -163,7 +163,7 @@ namespace BankingManagementOnlineBanking.API
 
         private void HandleException(MoreThanOneAccountException exception)
         {
-            Code = UnhandlerErrorCode;
+            Code = exception.Code;
             Status = (int)HttpStatusCode.BadRequest;
             Type = "https://datatracker.ietf.org/doc/html/rfc7231#section-6.5.1";
             Title = exception.Message;

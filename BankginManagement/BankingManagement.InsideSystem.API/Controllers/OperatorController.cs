@@ -7,6 +7,7 @@ using BankingManagement.InsideSystem.API.Infrastucture.Resources;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+using System.Security.Claims;
 
 namespace BankingManagement.InsideSystem.API.Controllers
 {
@@ -56,6 +57,15 @@ namespace BankingManagement.InsideSystem.API.Controllers
             await _operatorService.RegisterAsync(model, cancellationToken);
 
             return Ok(ResposneTexts.RegisterOperator);
+        }
+
+        [HttpPut("ChangePassword")]
+        public async Task<ActionResult> ChangePassword(OperatorChangePasswordModel model, CancellationToken cancellationToken)
+        {
+            int operatorId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
+            await _operatorService.ChangePassword(model, operatorId, cancellationToken);
+
+            return Ok();
         }
     }
 }

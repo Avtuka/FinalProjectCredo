@@ -47,6 +47,14 @@ namespace BankingManagementOnlineBanking.API.Controllers
             return Ok(JWTHelper.GenerateToken(user, _jwtConfiguration));
         }
 
+        [HttpPut("ChangePassword")]
+        public async Task<ActionResult> ChangePassword(UserPasswordChangeModel model, CancellationToken cancellationToken)
+        {
+            await _userService.ChangePassword(model, userId, cancellationToken);
+
+            return Ok();
+        }
+
         [HttpGet("MyAccounts")]
         public async Task<ActionResult> GetAccounts(CancellationToken cancellationToken)
         {

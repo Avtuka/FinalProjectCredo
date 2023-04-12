@@ -47,6 +47,19 @@ namespace BankingManagement.Application.Users
             return user;
         }
 
+        public async Task ChangePassword(UserPasswordChangeModel model, int userId, CancellationToken cancellationToken)
+        {
+            var user = await _repo.GetByPredicateAsync(x => x.Id == userId && x.PasswordHash == MyPasswordHelper.GenerateSHA512Hash(model.CurrentPassword), cancellationToken);
+
+            if (user == null)
+                throw new InvalidCredentialsException(ExceptionTexts.InvalidCredentials);
+
+            user.PasswordHash = MyPasswordHelper.GenerateSHA512Hash(model.NewPassword);
+
+            _repo.Update(user);
+            await _repo.SaveChangesAsync(cancellationToken);
+        }
+
         public async Task ConfirmEmailAsync(string code, string secret, CancellationToken cancellationToken)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
@@ -107,7 +120,7 @@ namespace BankingManagement.Application.Users
             Card card;
             do
             {
-                card = GenerateNewCard(userToRegister.FirstName + "" + userToRegister.LastName);
+                card = GenerateNewCard(userToRegister.FirstName + " " + userToRegister.LastName);
             } while (await _cardService.CardNumberExistsAsync(card.CardNumber, cancellationToken));
 
             //Assign card to accounts

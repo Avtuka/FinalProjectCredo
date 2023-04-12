@@ -31,6 +31,19 @@ namespace BankingManagement.Application.Operator
             return oper;
         }
 
+        public async Task ChangePassword(OperatorChangePasswordModel model, int operatorId, CancellationToken cancellationToken)
+        {
+            var oper = await _repo.GetByPredicateAsync(x => x.Id == operatorId && x.PasswordHash == MyPasswordHelper.GenerateSHA512Hash(model.CurrentPassword), cancellationToken);
+
+            if (oper == null)
+                throw new InvalidCredentialsException(ExceptionTexts.InvalidCredentials);
+
+            oper.PasswordHash = MyPasswordHelper.GenerateSHA512Hash(model.NewPassword);
+
+            _repo.Update(oper);
+            await _repo.SaveChangesAsync(cancellationToken);
+        }
+
         public async Task RegisterAsync(OperatorRegisterRequestModel model, CancellationToken cancellationToken)
         {
             if (await _repo.GetByPredicateAsync(x => x.Email == model.Email, cancellationToken) != null)

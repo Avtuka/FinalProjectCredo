@@ -8,6 +8,7 @@ namespace BankingManagement.Persistence.Configuration
     {
         public void Configure(EntityTypeBuilder<Operator> builder)
         {
+            builder.ToTable("Operators");
             builder.HasKey(x => x.Id);
 
             builder.HasIndex(x => x.PrivateNumber).IsUnique();

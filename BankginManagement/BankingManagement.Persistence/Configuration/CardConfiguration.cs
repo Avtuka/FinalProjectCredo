@@ -8,6 +8,7 @@ namespace BankingManagement.Persistence.Configuration
     {
         public void Configure(EntityTypeBuilder<Card> builder)
         {
+            builder.ToTable("Cards");
             builder.HasKey(x => x.Id);
 
             builder.HasIndex(x => x.CardNumber)

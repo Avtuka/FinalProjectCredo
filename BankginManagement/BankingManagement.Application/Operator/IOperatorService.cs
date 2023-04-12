@@ -6,6 +6,8 @@ namespace BankingManagement.Application.Operator
     {
         Task<Domain.Operator.Operator> AuthenticateAsync(OperatorLoginModel @operator, CancellationToken cancellationToken);
 
+        Task ChangePassword(OperatorChangePasswordModel model, int operatorId, CancellationToken cancellationToken);
+
         Task RegisterAsync(OperatorRegisterRequestModel model, CancellationToken cancellationToken);
     }
 }

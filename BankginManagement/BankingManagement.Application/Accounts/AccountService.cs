@@ -131,15 +131,15 @@ namespace BankingManagement.Application.Accounts
         {
             _repo.BeginTransaction(IsolationLevel.RepeatableRead);
 
-            var from = await _repo.GetByPredicateAsync(x => x.IBAN == model.FromIBAN && x.OwnerId == userId, cancellationToken).ConfigureAwait(false);
+            var from = await _repo.GetByPredicateAsync(x => x.IBAN == model.FromIBAN && x.OwnerId == userId, cancellationToken) ?? throw new AccountNotFoundException(ExceptionTexts.AccountNotFound);
             if (from.Amount < model.Amount)
                 throw new AccountBalanceException(ExceptionTexts.AccountBalance);
 
-            var to = await _repo.GetByPredicateAsync(x => x.IBAN == model.ToIBAN && x.OwnerId == userId, cancellationToken).ConfigureAwait(false);
+            var to = await _repo.GetByPredicateAsync(x => x.IBAN == model.ToIBAN && x.OwnerId == userId, cancellationToken);
             if (to == null)
                 throw new AccountNotFoundException(ExceptionTexts.AccountNotFound);
 
-            if (from.OwnerId != to.OwnerId)
+            if (from.OwnerId != to.OwnerId || from.Currency == to.Currency)
                 throw new InvalidTransactionException(ExceptionTexts.InvalidTransactionToOwnAccount);
 
             from.Amount -= model.Amount;
@@ -156,8 +156,6 @@ namespace BankingManagement.Application.Accounts
                 model.Amount /= rate.RateFormated * rate.Quantity;
             }
 
-            model.Amount -= model.Amount * 0.01 - 0.5;
-
             to.Amount += model.Amount;
 
             var transaction = new Domain.Transactions.Transaction
@@ -168,6 +166,7 @@ namespace BankingManagement.Application.Accounts
                 RecieverId = to.OwnerId,
                 Amount = model.Amount,
                 Currency = to.Currency,
+                Comission = 0
             };
 
             await _transactionService.AddTransactionAsync(transaction, cancellationToken);

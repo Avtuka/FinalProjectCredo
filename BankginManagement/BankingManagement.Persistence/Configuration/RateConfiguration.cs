@@ -8,6 +8,7 @@ namespace BankingManagement.Persistence.Configuration
     {
         public void Configure(EntityTypeBuilder<Rate> builder)
         {
+            builder.ToTable("Rates");
             builder.HasKey(x => x.Id);
 
             builder.HasIndex(x => x.Code)

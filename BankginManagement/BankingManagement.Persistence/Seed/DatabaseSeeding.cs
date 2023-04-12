@@ -14,8 +14,7 @@ namespace BankingManagement.Persistence.Seed
         {
             using var scope = serviceProvider.CreateScope();
             var database = scope.ServiceProvider.GetRequiredService<BankingManagementDbContext>();
-
-            database.Database.Migrate();
+            database.Database.EnsureCreated();
             Seed(database);
         }
 
@@ -24,20 +23,20 @@ namespace BankingManagement.Persistence.Seed
             var seeded = false;
 
             var operators = new List<Operator>
+        {
+            new Operator
             {
-                new Operator
-                {
-                    FirstName = "Avtandil",
-                    LastName = "Lazishvili",
-                    PrivateNumber = "61004067844",
-                    DateOfBirth = new DateTime(2000, 10, 7),
-                    Email = "avtukalaz@gmail.com",
-                    PasswordHash = GenerateSHA512Hash("Abcd123!"),
-                    Role = OperatorRoles.Administrator,
-                    CreatedOn = DateTime.UtcNow,
-                    UpdatedOn = DateTime.UtcNow
-                }
-            };
+                FirstName = "Avtandil",
+                LastName = "Lazishvili",
+                PrivateNumber = "61004067844",
+                DateOfBirth = new DateTime(2000, 10, 7),
+                Email = "avtukalaz@gmail.com",
+                PasswordHash = GenerateSHA512Hash("Abcd123!"),
+                Role = OperatorRoles.Administrator,
+                CreatedOn = DateTime.UtcNow,
+                UpdatedOn = DateTime.UtcNow
+            }
+        };
 
             foreach (var oper in operators)
             {

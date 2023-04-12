@@ -33,7 +33,7 @@ namespace BankingManagement.Application.Reports
             else
                 transactions = await _transactionRepo.GetAllByPredicateAsync(x => x.Date.AddMonths(-month) <= DateTime.UtcNow, cancellationToken);
 
-            if (transactions.Count() == 0)
+            if (!transactions.Any())
                 return report;
 
             report.TransactionCount = transactions.Count();
@@ -56,8 +56,8 @@ namespace BankingManagement.Application.Reports
         {
             var report = new UserReportResponseModel();
             report.NewUsersInThisYear = (await _userRepo.GetAllByPredicateAsync(x => x.CreatedOn.Year == DateTime.UtcNow.Year, cancellationToken)).Count();
-            report.NewUsersDuringLastYear = (await _userRepo.GetAllByPredicateAsync(x => x.CreatedOn.AddYears(-1) >= DateTime.UtcNow, cancellationToken)).Count();
-            report.NewUsersInLastMonth = (await _userRepo.GetAllByPredicateAsync(x => x.CreatedOn.AddDays(-30) >= DateTime.UtcNow, cancellationToken)).Count();
+            report.NewUsersDuringLastYear = (await _userRepo.GetAllByPredicateAsync(x => x.CreatedOn.AddYears(-1) <= DateTime.UtcNow, cancellationToken)).Count();
+            report.NewUsersInLastMonth = (await _userRepo.GetAllByPredicateAsync(x => x.CreatedOn.AddDays(-30) <= DateTime.UtcNow, cancellationToken)).Count();
 
             return report;
         }
