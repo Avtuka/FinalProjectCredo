@@ -20,6 +20,11 @@ namespace BankingManagement.InsideSystem.API.Controllers
 
         #endregion Private Members and CTOR
 
+        /// <summary>
+        /// Get reports for user
+        /// </summary>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         [HttpGet("Users")]
         public async Task<ActionResult> GetUserReport(CancellationToken cancellationToken)
         {
@@ -28,6 +33,12 @@ namespace BankingManagement.InsideSystem.API.Controllers
             return Ok(report);
         }
 
+        /// <summary>
+        /// Get reports for transactions
+        /// </summary>
+        /// <param name="month"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         [HttpGet("Transactions")]
         public async Task<ActionResult> GetTransactionReportsMonth(int month, CancellationToken cancellationToken)
         {

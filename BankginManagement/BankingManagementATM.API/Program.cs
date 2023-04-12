@@ -4,6 +4,7 @@ using BankingManagementATM.API.Infrastucture.Extensions;
 using BankingManagementATM.API.Infrastucture.Logger;
 using Microsoft.OpenApi.Models;
 using Serilog;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -48,6 +49,10 @@ builder.Services.AddSwaggerGen(Configuration =>
         }, Array.Empty<string>()
         }
     });
+
+    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+    Configuration.IncludeXmlComments(xmlPath);
 });
 
 builder.Services.AddApplicationServices();
@@ -60,7 +65,10 @@ app.UseCustomMiddlewares();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(options =>
+    {
+        options.SwaggerEndpoint("/swagger/v1/swagger.json", "Online Banking API v1");
+    });
 }
 
 app.UseHttpsRedirection();

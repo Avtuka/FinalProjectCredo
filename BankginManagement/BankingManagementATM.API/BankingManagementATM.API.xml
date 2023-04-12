@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BankingManagementATM.API</name>
+    </assembly>
+    <members>
+        <member name="M:BankingManagementATM.API.Controllers.ATMController.GetBalance(BankingManagement.Application.ATM.Requests.AuthenticateCardRequestModel,System.Threading.CancellationToken)">
+            <summary>
+            Returns balance on a card
+            </summary>
+            <param name="cardModel"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BankingManagementATM.API.Controllers.ATMController.ChangePin(BankingManagement.Application.ATM.Requests.AuthenticateCardRequestModel,BankingManagement.Application.ATM.Requests.ChangePinRequestModel,System.Threading.CancellationToken)">
+            <summary>
+            Change card pin from here
+            </summary>
+            <param name="cardModel"></param>
+            <param name="pinModel"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BankingManagementATM.API.Controllers.ATMController.WithdrawMoeny(BankingManagement.Application.ATM.Requests.AuthenticateCardRequestModel,BankingManagement.Domain.Enums.Currencies,System.Double,System.Threading.CancellationToken)">
+            <summary>
+            Action method for withdrawing money
+            </summary>
+            <param name="cardModel"></param>
+            <param name="currency"></param>
+            <param name="amount"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BankingManagementATM.API.Infrastucture.Resources.ResponseTexts">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:BankingManagementATM.API.Infrastucture.Resources.ResponseTexts.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:BankingManagementATM.API.Infrastucture.Resources.ResponseTexts.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:BankingManagementATM.API.Infrastucture.Resources.ResponseTexts.PINChange">
+            <summary>
+              Looks up a localized string similar to Pin was changed.
+            </summary>
+        </member>
+        <member name="P:BankingManagementATM.API.Infrastucture.Resources.ResponseTexts.Withdraw">
+            <summary>
+              Looks up a localized string similar to withdraw successful.
+            </summary>
+        </member>
+    </members>
+</doc>

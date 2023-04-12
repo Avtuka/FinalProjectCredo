@@ -12,7 +12,7 @@ using System.Security.Claims;
 namespace BankingManagement.InsideSystem.API.Controllers
 {
     [Route("api/[controller]")]
-    //[Authorize(Roles = "Operator, CreditOfficer, Administrator")]
+    [Authorize(Roles = "Operator, CreditOfficer, Administrator")]
     [ApiController]
     public class OperatorController : ControllerBase
     {
@@ -31,6 +31,38 @@ namespace BankingManagement.InsideSystem.API.Controllers
 
         #endregion Private Members and CTOR
 
+        /// <summary>
+        /// Register new user from here
+        /// </summary>
+        /// <remarks>
+        /// Sample Request
+        /// 
+        ///     Post /UserRegistration
+        ///     {
+        ///     "firstName" : "Avtnadil",
+        ///     "lastName": "Lazishvili",
+        ///     "privateNumber": "61004067844",
+        ///     dateOfBirth": "2000-10-07",
+        ///     "email": "avtukalaz@gmail.com",
+        ///     "accounts": [
+        ///         {
+        ///         "amount": 1000,
+        ///         "currency": 0
+        ///         },
+        ///         {
+        ///         "amount": 1000,
+        ///         "currency": 1
+        ///         },
+        ///         {
+        ///         "amount": 1000,
+        ///         "currency": 2
+        ///         }
+        ///         ]
+        ///     }
+        /// </remarks>
+        /// <param name="model"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         [Route("UserRegistration")]
         [HttpPost]
         public async Task<ActionResult> RegisterUser(UserRegisterRequestModel model, CancellationToken cancellationToken)
@@ -40,6 +72,12 @@ namespace BankingManagement.InsideSystem.API.Controllers
             return Ok(ResposneTexts.RegisterUser);
         }
 
+        /// <summary>
+        /// Login for operator
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         [Route("LogIn")]
         [AllowAnonymous]
         [HttpPost]
@@ -50,6 +88,13 @@ namespace BankingManagement.InsideSystem.API.Controllers
             return Ok(JWTHelper.GenerateToken(@operator, _jwtOptions));
         }
 
+        /// <summary>
+        /// New operator registration
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        [Authorize(Roles = "Administrator")]
         [Route("OperatorRegistration")]
         [HttpPost]
         public async Task<ActionResult> RegisterOperator(OperatorRegisterRequestModel model, CancellationToken cancellationToken)
@@ -59,6 +104,12 @@ namespace BankingManagement.InsideSystem.API.Controllers
             return Ok(ResposneTexts.RegisterOperator);
         }
 
+        /// <summary>
+        /// Operator can change password from here
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         [HttpPut("ChangePassword")]
         public async Task<ActionResult> ChangePassword(OperatorChangePasswordModel model, CancellationToken cancellationToken)
         {

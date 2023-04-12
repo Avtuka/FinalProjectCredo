@@ -21,6 +21,12 @@ namespace BankingManagementATM.API.Controllers
 
         #endregion Private Members and CTOR
 
+        /// <summary>
+        /// Returns balance on a card
+        /// </summary>
+        /// <param name="cardModel"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         [HttpGet("Balance")]
         public async Task<ActionResult> GetBalance([FromQuery] AuthenticateCardRequestModel cardModel, CancellationToken cancellationToken)
         {
@@ -29,6 +35,13 @@ namespace BankingManagementATM.API.Controllers
             return Ok(result);
         }
 
+        /// <summary>
+        /// Change card pin from here
+        /// </summary>
+        /// <param name="cardModel"></param>
+        /// <param name="pinModel"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         [HttpPut("Pin")]
         public async Task<ActionResult> ChangePin([FromQuery] AuthenticateCardRequestModel cardModel, [FromBody] ChangePinRequestModel pinModel, CancellationToken cancellationToken)
         {
@@ -37,7 +50,15 @@ namespace BankingManagementATM.API.Controllers
             return Ok(ResponseTexts.PINChange);
         }
 
-        [HttpPut]
+        /// <summary>
+        /// Action method for withdrawing money
+        /// </summary>
+        /// <param name="cardModel"></param>
+        /// <param name="currency"></param>
+        /// <param name="amount"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        [HttpPut("Withdraw")]
         public async Task<ActionResult> WithdrawMoeny(AuthenticateCardRequestModel cardModel, Currencies currency, double amount, CancellationToken cancellationToken)
         {
             await _service.WithdrawAsync(cardModel, currency, amount, cancellationToken);

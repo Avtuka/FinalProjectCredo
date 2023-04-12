@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BankingManagement.InsideSystem.API</name>
+    </assembly>
+    <members>
+        <member name="M:BankingManagement.InsideSystem.API.Controllers.OperatorController.RegisterUser(BankingManagement.Application.Users.Requests.UserRegisterRequestModel,System.Threading.CancellationToken)">
+            <summary>
+            Register new user from here
+            </summary>
+            <remarks>
+            Sample Request
+            
+                Post /UserRegistration
+                {
+                "firstName" : "Avtnadil",
+                "lastName": "Lazishvili",
+                "privateNumber": "61004067844",
+                dateOfBirth": "2000-10-07",
+                "email": "avtukalaz@gmail.com",
+                "accounts": [
+                    {
+                    "amount": 1000,
+                    "currency": 0
+                    },
+                    {
+                    "amount": 1000,
+                    "currency": 1
+                    },
+                    {
+                    "amount": 1000,
+                    "currency": 2
+                    }
+                    ]
+                }
+            </remarks>
+            <param name="model"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BankingManagement.InsideSystem.API.Controllers.OperatorController.LoginOperator(BankingManagement.Application.Operator.Requests.OperatorLoginModel,System.Threading.CancellationToken)">
+            <summary>
+            Login for operator
+            </summary>
+            <param name="model"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BankingManagement.InsideSystem.API.Controllers.OperatorController.RegisterOperator(BankingManagement.Application.Operator.Requests.OperatorRegisterRequestModel,System.Threading.CancellationToken)">
+            <summary>
+            New operator registration
+            </summary>
+            <param name="model"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BankingManagement.InsideSystem.API.Controllers.OperatorController.ChangePassword(BankingManagement.Application.Operator.Requests.OperatorChangePasswordModel,System.Threading.CancellationToken)">
+            <summary>
+            Operator can change password from here
+            </summary>
+            <param name="model"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BankingManagement.InsideSystem.API.Controllers.ReportsController.GetUserReport(System.Threading.CancellationToken)">
+            <summary>
+            Get reports for user
+            </summary>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BankingManagement.InsideSystem.API.Controllers.ReportsController.GetTransactionReportsMonth(System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Get reports for transactions
+            </summary>
+            <param name="month"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BankingManagement.InsideSystem.API.Infrastucture.Resources.ResposneTexts">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:BankingManagement.InsideSystem.API.Infrastucture.Resources.ResposneTexts.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:BankingManagement.InsideSystem.API.Infrastucture.Resources.ResposneTexts.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:BankingManagement.InsideSystem.API.Infrastucture.Resources.ResposneTexts.RegisterOperator">
+            <summary>
+              Looks up a localized string similar to Operator registration was successful.
+            </summary>
+        </member>
+        <member name="P:BankingManagement.InsideSystem.API.Infrastucture.Resources.ResposneTexts.RegisterUser">
+            <summary>
+              Looks up a localized string similar to User Registration was successful.
+            </summary>
+        </member>
+    </members>
+</doc>
